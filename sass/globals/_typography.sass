@@ -1,0 +1,150 @@
+$font-family:                       sans-serif
+$headline-font-familiy:             sans-serif
+$base-font-size:                    15px
+$small-font-size:                   0.9em
+$default-font-size:                 1em
+$medium-font-size:                  1.15em
+$large-font-size:                   1.25em
+$huge-font-size:                    1.4em
+
+$line-height:                       1.777777777778
+$narrow-line-height:                1.25
+
+=font-size($size)
+  @if $size == small
+    font-size: $small-font-size
+    word-spacing: 0.075em
+  @else if $size == default
+    font-size: $default-font-size
+    word-spacing: 0.04em
+  @else if $size == medium
+    font-size: $medium-font-size
+  @else if $size == large
+    font-size: $large-font-size
+    word-spacing: -0.025em
+  @else if $size == huge
+    font-size: $huge-font-size
+    word-spacing: -0.05em
+  @else
+    font-size: $size
+
+=headline-basic-styling
+  +font-size(default)
+  margin:
+    top: 0
+    bottom: 0
+  font-family: $headline-font-familiy
+  font-weight: bold
+  color: $color-font-headline
+  letter-spacing: -0.3px
+  line-height: $narrow-line-height
+  text-rendering: optimizelegibility
+
+
+// Texts
+// -----
+html
+  font-size: $base-font-size
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-size-adjust: 100%
+
+body
+  font-size: $base-font-size
+  font-family: $font-family
+  color: $color-font
+  line-height: $line-height
+
+h1, h2, h3, h4, h5, h6
+  +headline-basic-styling
+
+h1
+  +font-size(huge)
+  margin-bottom: .5em
+  font-weight: bold
+  &:last-child
+    margin-bottom: 0
+
+h2
+  +font-size(large)
+  margin-bottom: .25em
+  font-weight: bold
+  &:last-child
+    margin-bottom: 0
+
+h3
+  +font-size(medium)
+  margin-bottom: .25em
+  font-weight: bold
+  &:last-child
+    margin-bottom: 0
+
+p
+  margin: 0
+
+abbr[title]
+  border-bottom: 1px dotted $color-border
+  cursor: help
+
+pre
+  overflow: auto
+
+q,
+blockquote
+  &:before,
+  &:after
+    content: ""
+
+strong
+  font-weight: bold
+
+dfn
+  font-style: italic
+
+em
+  font-style: italic
+
+small
+  +font-size(small)
+
+
+// Links
+// -----
+a
+  color: $color-link
+  text-decoration: none
+  transition: all ease-out .2s
+  &:hover,
+  &:focus
+    text-decoration: underline
+  &:focus
+    outline: 0
+
+
+// Lists
+// -----
+ul,
+ol,
+  margin: 0
+  padding: 0
+  list-style: none
+  ul,
+  ol
+    margin-bottom: 0
+
+li
+  margin: 0
+  padding: 0
+
+dl
+  margin-bottom: 1em
+
+dt,
+dd
+  line-height: $line-height
+
+dt
+  font-weight: bold
+
+dd
+  margin-left: 0.5em

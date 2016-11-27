@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width' name='viewport'>
+    <title>bb-8</title>
+    <link href='styles.css' rel='stylesheet'>
+    <script src='https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js'></script>
+    <script src='https://unpkg.com/vue@2.1.3/dist/vue.js'></script>
+  </head>
+  <body>
+    <script id='template-controls' type='text/x-template'>
+      <div>
+        <a class='button' v-on:click='addBlock("heading")'>Heading</a>
+        <a class='button' v-on:click='addBlock("subheading")'>Subheading</a>
+        <a class='button' v-on:click='addBlock("single-image")'>Image</a>
+      </div>
+    </script>
+    <script id='template-bb8' type='text/x-template'>
+      <div>
+        <slot>
+          <textarea cols='100' name='text' rows='8' v-model='output'></textarea>
+        </slot>
+        <controls :index='-1'></controls>
+        <hr>
+        <div>
+          <component :blocks='blocks' :index='index' :initialData='block' :is='block.blocktype' :key='block.id' v-for='(block, index) in blocks'></component>
+        </div>
+      </div>
+    </script>
+    <script id='template-heading' type='text/x-template'>
+      <div>
+        <label>Heading</label>
+        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <controls :index='index'></controls>
+        <hr>
+      </div>
+    </script>
+    <script id='template-subheading' type='text/x-template'>
+      <div>
+        <label>Subheading</label>
+        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <controls :index='index'></controls>
+        <hr>
+      </div>
+    </script>
+    <script id='template-single-image' type='text/x-template'>
+      <div>
+        <label>Image</label>
+        <input name='file' type='file' v-on:change='updateImage($event)'>
+        <img :src='block.image'>
+        <label>Alt</label>
+        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <controls :index='index'></controls>
+        <hr>
+      </div>
+    </script>
+    <form id='bb8-form' v-on:submit='submit($event)'>
+      <bb8 initial-json='[{"blocktype":"heading","id":1,"text":"Test","size":"h2"},{"blocktype":"subheading","id":2,"text":"Blub","size":"h3"},{"blocktype":"heading","id":3,"text":"","size":""}]'></bb8>
+      <input type='submit' value='submit'>
+    </form>
+    <script src='bb-8.js'></script>
+  </body>
+</html>

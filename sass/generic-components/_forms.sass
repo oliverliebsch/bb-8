@@ -1,0 +1,263 @@
+// Basic
+// -----
+button,
+input,
+optgroup,
+select,
+textarea
+  margin: 0
+  font: inherit
+  line-height: $line-height
+  color: inherit
+
+optgroup
+  font-weight: bold
+
+select
+  &[multiple],
+  &[size]
+    height: auto
+
+button,
+input
+  overflow: visible
+
+button
+  text-transform: none
+
+button,
+html input[type='button'],
+input[type='reset'],
+input[type='submit']
+  appearance: button
+  cursor: pointer
+  &::-moz-focus-inner
+    border: 0
+    padding: 0
+  &:-moz-focusring
+    outline: 1px dotted ButtonText
+
+input
+  &[type='checkbox'],
+  &[type='radio']
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+  &[type='number']
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button
+      height: auto
+  &[type='file']
+    display: block
+    overflow: hidden
+    width: 100%
+  &[type='number']
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button
+      height: auto
+  &[type='file'],
+  &[type='radio'],
+  &[type='checkbox']
+    &:focus
+      outline: thin dotted $color-font
+  &[type='search']
+    -webkit-appearance: textfield
+    outline-offset: -2px
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration
+      -webkit-appearance: none
+
+::-webkit-input-placeholder
+  opacity: 0.54
+  color: inherit
+
+::-webkit-file-upload-button
+  -webkit-appearance: button
+  font: inherit
+
+
+// Form
+// ----
+.form
+  max-width: $max-content-width
+
+.form--fieldset
+  +pie-clearfix
+  +half-spacing(margin-bottom)
+  +half-spacing(padding-top)
+  &:last-child
+    margin-top: 0 !important
+  +respond-to(medium)
+    border-top: 1px solid $color-border
+    &:first-child
+      border-top: none
+
+.form--legend
+  +headline-basic-styling
+  +font-size(medium)
+  margin-bottom: .5em
+  +respond-to(medium)
+    float: left
+    width: 250px
+
+.from--fieldgroup
+  +respond-to(medium)
+    margin-left: 274px
+
+.form--group
+  +pie-clearfix
+  +half-spacing(margin-bottom)
+  &:last-child
+    margin-bottom: 0
+  &.is-disabled
+    color: $grey
+  &.has-error
+    .form--label,
+    .form--validation,
+    .form--control
+      color: $color-alert
+    .form--validation
+      line-height: $narrow-line-height
+
+
+// Hints
+// -----
+.form--hints
+  +half-spacing(margin-bottom)
+  margin-top: 4px
+  color: $color-font-light
+  line-height: $narrow-line-height
+  strong
+    font-weight: bold
+
+.form--group
+  .form--hints
+    margin-bottom: 0 !important
+
+.form--grouphints
+  +half-spacing(margin-bottom)
+  color: $color-font-light
+  strong
+    font-weight: bold
+  +respond-to(medium)
+    clear: left
+    float: left
+    width: 250px
+
+
+// Labels
+// ------
+.form--label
+  display: block
+  margin: 0
+  font-weight: bold
+  &.is-required
+    &::after
+      content: ' *'
+      position: relative
+
+
+// Fields
+// ------
+.form--control
+  display: block
+  width: 100%
+  padding: 0.5em
+  border: 1px solid $color-border
+  border-radius: 0
+  background-color: white
+  background-image: none
+  &.is-single-textual-information
+    appearance: none
+  &.is-textarea
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    height: auto
+    min-height: 100px
+
+// Selects
+.form--select-wrapper
+  position: relative
+  width: 100%
+  border: 1px solid $color-border
+  background-color: white
+  &::after
+    z-index: 1
+    content: '▾'
+    position: absolute
+    top: 50%
+    right: 0.5em
+    margin-top: -13px
+    color: $medium-grey
+
+.form--select
+  display: inline-block
+  z-index: 2
+  vertical-align: middle
+  position: relative
+  width: 100%
+  padding: 0.5em 1.5em 0.5em 0.5em
+  border: 0
+  border-radius: 0
+  background-color: transparent
+  user-select: none
+  appearance: none
+  text-transform: none
+  &::-ms-expand
+    display: none
+
+// Checkboxes
+.form--checkboxes
+  list-style-type: none
+
+.form--checkbox-item
+  margin-left: 0
+
+.form--checkbox
+  vertical-align: middle
+
+.form--checkbox-label
+  display: inline-block
+  vertical-align: middle
+  margin-left: 4px
+
+// Files
+.from--image-preview
+  +small-spacing(margin-top)
+  display: inline-block
+  max-width: 100%
+  height: auto
+
+
+// Actions
+// -------
+.form--actions
+  +half-spacing(margin-top)
+  +half-spacing(padding-top)
+  border-top: 1px solid $color-border
+  .button
+    +small-spacing(margin-bottom)
+    width: 100%
+    +respond-to(small)
+      +small-spacing(margin-left)
+      width: auto
+      margin-bottom: 0
+      &:first-child
+        margin-left: 0
+
+
+// Notifications
+// -------------
+.form--errors
+  +default-spacing(margin-bottom)
+  +small-spacing(padding)
+  font-weight: bold
+  background-color: $color-notification-alert-background
+  color: $color-notification-text
+
+.form--success
+  +default-spacing(margin-bottom)
+  +small-spacing(padding)
+  font-weight: bold
+  background-color: $color-notification-success-background
+  color: $color-notification-text
