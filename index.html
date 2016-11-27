@@ -24,14 +24,14 @@
         <controls :index='-1'></controls>
         <hr>
         <div>
-          <component :blocks='blocks' :index='index' :initialData='block' :is='block.blocktype' :key='block.id' v-for='(block, index) in blocks'></component>
+          <component :index='index' :initialData='block' :is='block.blocktype' :key='block.id' v-for='(block, index) in blocks'></component>
         </div>
       </div>
     </script>
     <script id='template-heading' type='text/x-template'>
       <div>
         <label>Heading</label>
-        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <input :value='block.fields[0].content' v-on:input='updateText($event.target.value)'>
         <controls :index='index'></controls>
         <hr>
       </div>
@@ -39,7 +39,7 @@
     <script id='template-subheading' type='text/x-template'>
       <div>
         <label>Subheading</label>
-        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <input :value='block.fields[0].content' v-on:input='updateText($event.target.value)'>
         <controls :index='index'></controls>
         <hr>
       </div>
@@ -48,15 +48,15 @@
       <div>
         <label>Image</label>
         <input name='file' type='file' v-on:change='updateImage($event)'>
-        <img :src='block.image'>
+        <img :src='block.fields[1].content'>
         <label>Alt</label>
-        <input :value='block.text' v-on:input='updateText($event.target.value)'>
+        <input :value='block.fields[0].content' v-on:input='updateText($event.target.value)'>
         <controls :index='index'></controls>
         <hr>
       </div>
     </script>
     <form id='bb8-form' v-on:submit='submit($event)'>
-      <bb8 initial-json='[{"blocktype":"heading","id":1,"text":"Test","size":"h2"},{"blocktype":"subheading","id":2,"text":"Blub","size":"h3"},{"blocktype":"heading","id":3,"text":"","size":""}]'></bb8>
+      <bb8 initial-json='[{"blocktype":"heading","id":1,"fields":[{"type":"text","content":"Test","required":true}]},{"blocktype":"subheading","id":2,"fields":[{"type":"text","content":"Blub","required":true}]},{"blocktype":"heading","id":3,"fields":[{"type":"text","content":"Bla","required":true}]}]'></bb8>
       <input type='submit' value='submit'>
     </form>
     <script src='bb-8.js'></script>

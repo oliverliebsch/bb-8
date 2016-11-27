@@ -18,8 +18,8 @@
 # @ Kurzschreibweise
 
 
-# Centralized event hub
-eventHub = new Vue()
+# central event bus
+eventBus = new Vue()
 
 Controls = {
   template: '#template-controls'
@@ -28,7 +28,7 @@ Controls = {
 
   methods: {
     addBlock: (type) ->
-      eventHub.$emit('bb8-add-block', { blocktype: type, index: this.index })
+      eventBus.$emit('bb8-add-block', { blocktype: type, index: this.index })
   }
 }
 
@@ -37,24 +37,32 @@ blockMixin = {
     block: this.initialData
   }
 
-  props: ['blocks', 'initialData', 'index']
+  props: ['initialData', 'index']
 
   components: {
     'controls': Controls
   }
 
   created: ->
-    debugger
+    _.defaults(this.initialData, {fields: this.fields})
 
   methods: {
     updateText: (text) ->
-      this.block.text = text
-      this.$emit('bb8-update-block', this.block)
+      this.block.fields[0].content = text
+      # this.$emit('bb8-update-block', this.block)
   }
 }
 
 Heading = {
   template: '#template-heading'
+
+  data: -> {
+    fields: [{
+      type: 'text'
+      content: ''
+      required: true
+    }]
+  }
 
   mixins: [blockMixin]
 }
@@ -62,11 +70,30 @@ Heading = {
 Subheading = {
   template: '#template-subheading'
 
+  data: -> {
+    fields: [{
+      text: ''
+      required: true
+    }]
+  }
+
   mixins: [blockMixin]
 }
 
 SingleImage = {
   template: '#template-single-image'
+
+  data: -> {
+    fields: [{
+      type: 'text'
+      content: ''
+      required: true
+    }, {
+      type: 'image'
+      content: ''
+      required: true
+    }]
+  }
 
   mixins: [blockMixin]
 
@@ -74,13 +101,13 @@ SingleImage = {
     updateImage: (event) ->
       file = event.target.files[0]
 
-      thus = this
+      that = this
       reader = new FileReader()
       reader.onloadend = (e) ->
-        thus.block.image = e.target.result if e.target.readyState == FileReader.DONE
+        that.block.fields[1].content = e.target.result if e.target.readyState == FileReader.DONE
       reader.readAsDataURL(file)
 
-      this.$emit('bb8-update-block', this.block)
+      # this.$emit('bb8-update-block', this.block)
   }
 }
 
@@ -111,34 +138,25 @@ BB8 = {
 
   created: ->
     this.blocks = JSON.parse(this.initialJson)
+    this.compileBlocks()
 
-    eventHub.$on('bb8-add-block', this.addBlock)
-    eventHub.$on('bb8-form-submitted', this.compileBlocks)
+    eventBus.$on('bb8-add-block', this.addBlock)
+    eventBus.$on('bb8-form-submitted', this.compileBlocks)
 
   methods: {
     addBlock: (newBlock) ->
-      switch newBlock.blocktype
-        when 'heading', 'subheading'
-          fields = {
-            text: ''
-          }
-          # [{
-          #   text: ''
-          #   required: true
-          # }]
-        when 'single-image'
-          fields = {
-            image: ''
-            text: ''
-          }
-
-      this.blocks.splice(newBlock.index + 1, 0, _.merge({
+      this.blocks.splice(newBlock.index + 1, 0, {
         blocktype: newBlock.blocktype,
         id: if this.ids.length then _.last(this.ids) + 1 else 1
-      }, fields))
+      })
 
     compileBlocks: ->
       # Validations
+      # Better? Validation on the component instance? Directive?
+      for block in this.blocks
+        for field in block.fields
+          if field.required && field.content == ''
+            console.log "error"
       this.output = JSON.stringify(this.blocks)
   }
 }
@@ -153,6 +171,6 @@ vm = new Vue({
   methods: {
     submit: (event) ->
       event.preventDefault()
-      eventHub.$emit('bb8-form-submitted')
+      eventBus.$emit('bb8-form-submitted')
   }
 })

@@ -21,19 +21,19 @@
         %controls(:index='-1')
         %hr
         %div
-          %component(:is='block.blocktype' v-for='(block, index) in blocks' :blocks='blocks' :initialData='block' :index='index' :key='block.id')
+          %component(:is='block.blocktype' v-for='(block, index) in blocks' :initialData='block' :index='index' :key='block.id')
 
     %script#template-heading(type='text/x-template')
       %div
         %label Heading
-        %input(:value='block.text' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
         %controls(:index='index')
         %hr
 
     %script#template-subheading(type='text/x-template')
       %div
         %label Subheading
-        %input(:value='block.text' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
         %controls(:index='index')
         %hr
 
@@ -41,14 +41,14 @@
       %div
         %label Image
         %input(type='file' name='file' v-on:change='updateImage($event)')
-        %img(:src='block.image')
+        %img(:src='block.fields[1].content')
         %label Alt
-        %input(:value='block.text' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
         %controls(:index='index')
         %hr
 
     %form#bb8-form(v-on:submit='submit($event)')
-      %bb8(initial-json='[{"blocktype":"heading","id":1,"text":"Test","size":"h2"},{"blocktype":"subheading","id":2,"text":"Blub","size":"h3"},{"blocktype":"heading","id":3,"text":"","size":""}]')
+      %bb8(initial-json='[{"blocktype":"heading","id":1,"fields":[{"type":"text","content":"Test","required":true}]},{"blocktype":"subheading","id":2,"fields":[{"type":"text","content":"Blub","required":true}]},{"blocktype":"heading","id":3,"fields":[{"type":"text","content":"Bla","required":true}]}]')
 
       %input(type='submit' value='submit')
 
