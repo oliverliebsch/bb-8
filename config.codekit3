@@ -9,6 +9,12 @@
 	],
 "creatorBuild": "25444",
 "files": {
+	"\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.gitignore",
+		"oF": 0
+		},
 	"\/bb-8.coffee": {
 		"ft": 32,
 		"ma": 0,
@@ -45,12 +51,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
-		"oF": 0
-		},
-	"\/index.html.sic": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/index.html.sic",
 		"oF": 0
 		},
 	"\/sass\/abstract-components\/_spacing.sass": {
