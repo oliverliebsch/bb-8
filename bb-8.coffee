@@ -46,10 +46,14 @@ blockMixin = {
   created: ->
     _.defaults(this.initialData, {fields: this.fields})
 
+    eventBus.$on('bb8-form-submitted', this.validate)
+
   methods: {
     updateText: (text) ->
       this.block.fields[0].content = text
       # this.$emit('bb8-update-block', this.block)
+    validate: ->
+      console.log "validate"
   }
 }
 
@@ -62,9 +66,20 @@ Heading = {
       content: ''
       required: true
     }]
+    # heading: ''
   }
 
   mixins: [blockMixin]
+
+  # watch: {
+  #  v-model='heading'
+  #   heading: (test) ->
+  #     console.log "test"
+  # }
+
+  # created: ->
+    # this.heading = this.block.fields[0].content
+    # eventBus.$on('bb8-validate-block-heading', this.validate)
 }
 
 Subheading = {
@@ -157,6 +172,7 @@ BB8 = {
         for field in block.fields
           if field.required && field.content == ''
             console.log "error"
+            # eventBus.$emit('bb8-validate-block-' + block.blocktype)
       this.output = JSON.stringify(this.blocks)
   }
 }
@@ -171,6 +187,12 @@ vm = new Vue({
   methods: {
     submit: (event) ->
       event.preventDefault()
+      # IDEA
+      # attr valid: t/f for each block
+      # watcher on blocks and this attr
+      # each block changes this attr after submission
+      # default is false for a new block
+      # reset on change
       eventBus.$emit('bb8-form-submitted')
   }
 })

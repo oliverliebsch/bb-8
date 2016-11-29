@@ -26,24 +26,24 @@
     %script#template-heading(type='text/x-template')
       %div
         %label Heading
-        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)' required)
         %controls(:index='index')
         %hr
 
     %script#template-subheading(type='text/x-template')
       %div
         %label Subheading
-        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)' required)
         %controls(:index='index')
         %hr
 
     %script#template-single-image(type='text/x-template')
       %div
         %label Image
-        %input(type='file' name='file' v-on:change='updateImage($event)')
+        %input(type='file' name='file' v-on:change='updateImage($event)' required)
         %img(:src='block.fields[1].content')
         %label Alt
-        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)')
+        %input(:value='block.fields[0].content' v-on:input='updateText($event.target.value)' required)
         %controls(:index='index')
         %hr
 

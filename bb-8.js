@@ -28,13 +28,17 @@
       'controls': Controls
     },
     created: function() {
-      return _.defaults(this.initialData, {
+      _.defaults(this.initialData, {
         fields: this.fields
       });
+      return eventBus.$on('bb8-form-submitted', this.validate);
     },
     methods: {
       updateText: function(text) {
         return this.block.fields[0].content = text;
+      },
+      validate: function() {
+        return console.log("validate");
       }
     }
   };
@@ -52,15 +56,7 @@
         ]
       };
     },
-    mixins: [blockMixin],
-    created: function() {
-      return eventBus.$on('bb8-validate-block-heading', this.test);
-    },
-    methods: {
-      test: function() {
-        return console.log("validate");
-      }
-    }
+    mixins: [blockMixin]
   };
 
   Subheading = {
@@ -156,7 +152,6 @@
             field = ref1[j];
             if (field.required && field.content === '') {
               console.log("error");
-              eventBus.$emit('bb8-validate-block-' + block.blocktype);
             }
           }
         }
