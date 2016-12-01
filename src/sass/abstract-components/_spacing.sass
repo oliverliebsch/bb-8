@@ -1,0 +1,14 @@
+=small-spacing($property)
+  #{$property}: 0.5em
+  +respond-to(large)
+    #{$property}: 1em
+
+=half-spacing($property)
+  #{$property}: 1em
+  +respond-to(large)
+    #{$property}: 2em
+
+=default-spacing($property)
+  #{$property}: 2em
+  +respond-to(large)
+    #{$property}: 4em

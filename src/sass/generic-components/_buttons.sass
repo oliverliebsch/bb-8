@@ -1,0 +1,28 @@
+=button-style($border: $color-button-border, $background: $color-button-background, $font: $color-button-font, $hover-border: $color-button-hover-border, $hover-background: $color-button-hover-background, $hover-font: $color-button-hover-font)
+  border-color: $border
+  background-color: $background
+  color: $font
+  &:hover,
+  &:active,
+  &:focus
+    border-color: $hover-border
+    background-color: $hover-background
+    color: $hover-font
+    text-decoration: none
+
+.button
+  +button-style
+  display: inline-block
+  vertical-align: middle
+  white-space: nowrap
+  padding: 0.5em 1em
+  border-width: 1px
+  border-style: solid
+  border-radius: 0
+  font-weight: bold
+  text-align: center
+  text-decoration: none
+  cursor: pointer
+  user-select: none
+  appearance: none
+  transition: all .2s ease-in-out

@@ -49,6 +49,8 @@
     %form#bb8-form(v-on:submit='submit($event)')
       %bb8(initial-json='[{"blocktype":"heading","fields":[{"type":"text","content":"Test","required":true}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Blub","required":true}]},{"blocktype":"heading","fields":[{"type":"text","content":"Bla","required":true}]}]')
 
+      %heading
+
       %input(type='submit' value='submit')
 
     %script(src='bb-8.js')
