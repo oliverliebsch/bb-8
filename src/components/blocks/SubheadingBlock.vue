@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>Subheading</label>
-    <input :value="block.fields[0].content" required v-on:input="updateText($event.target.value)">
+    <input :value="block.fields[0].content" @input="updateText($event.target.value)" required>
     <controls :index="index"></controls>
     <hr>
   </div>

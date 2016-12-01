@@ -1,10 +1,10 @@
 <template>
   <div>
     <label>Image</label>
-    <input name="file" required type="file" v-on:change="updateImage($event)">
+    <input name="file" required type="file" @change="updateImage($event)">
     <img :src="block.fields[1].content">
     <label>Alt</label>
-    <input :value="block.fields[0].content" required v-on:input="updateText($event.target.value)">
+    <input :value="block.fields[0].content" @input="updateText($event.target.value)" required>
     <controls :index="index"></controls>
     <hr>
   </div>

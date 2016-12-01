@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>Text</label>
-    <textarea required v-on:input="updateText($event.target.value)">{{block.fields[0].content}}</textarea>
+    <textarea @input="updateText($event.target.value)" required>{{block.fields[0].content}}</textarea>
     <controls :index="index"></controls>
     <hr>
   </div>

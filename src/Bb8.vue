@@ -66,6 +66,7 @@ export default {
       })
 
     compileBlocks: ->
+      # TODO: Remove ids?
       this.output = JSON.stringify(this.blocks)
   }
 }
