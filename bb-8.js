@@ -28,70 +28,63 @@
       'controls': Controls
     },
     created: function() {
-      _.defaults(this.initialData, {
+      return _.defaults(this.initialData, {
         fields: this.fields
       });
-      return eventBus.$on('bb8-form-submitted', this.validate);
     },
     methods: {
       updateText: function(text) {
         return this.block.fields[0].content = text;
-      },
-      validate: function() {
-        return console.log("validate");
       }
     }
   };
 
   Heading = {
     template: '#template-heading',
+    mixins: [blockMixin],
     data: function() {
       return {
         fields: [
           {
             type: 'text',
-            content: '',
-            required: true
+            content: ''
           }
         ]
       };
-    },
-    mixins: [blockMixin]
+    }
   };
 
   Subheading = {
     template: '#template-subheading',
-    data: function() {
-      return {
-        fields: [
-          {
-            text: '',
-            required: true
-          }
-        ]
-      };
-    },
-    mixins: [blockMixin]
-  };
-
-  SingleImage = {
-    template: '#template-single-image',
+    mixins: [blockMixin],
     data: function() {
       return {
         fields: [
           {
             type: 'text',
-            content: '',
-            required: true
+            content: ''
+          }
+        ]
+      };
+    }
+  };
+
+  SingleImage = {
+    template: '#template-single-image',
+    mixins: [blockMixin],
+    data: function() {
+      return {
+        fields: [
+          {
+            type: 'text',
+            content: ''
           }, {
             type: 'image',
-            content: '',
-            required: true
+            content: ''
           }
         ]
       };
     },
-    mixins: [blockMixin],
     methods: {
       updateImage: function(event) {
         var file, reader, that;
@@ -130,31 +123,32 @@
       }
     },
     created: function() {
-      this.blocks = JSON.parse(this.initialJson);
+      var block, blocks, i, len;
+      blocks = JSON.parse(this.initialJson);
+      for (i = 0, len = blocks.length; i < len; i++) {
+        block = blocks[i];
+        block.id = blocks.indexOf(block) + 1;
+      }
+      this.blocks = blocks;
       this.compileBlocks();
       eventBus.$on('bb8-add-block', this.addBlock);
       return eventBus.$on('bb8-form-submitted', this.compileBlocks);
     },
     methods: {
+      createBlockId: function() {
+        if (this.ids.length) {
+          return _.last(this.ids) + 1;
+        } else {
+          return 1;
+        }
+      },
       addBlock: function(newBlock) {
         return this.blocks.splice(newBlock.index + 1, 0, {
           blocktype: newBlock.blocktype,
-          id: this.ids.length ? _.last(this.ids) + 1 : 1
+          id: this.createBlockId()
         });
       },
       compileBlocks: function() {
-        var block, field, i, j, len, len1, ref, ref1;
-        ref = this.blocks;
-        for (i = 0, len = ref.length; i < len; i++) {
-          block = ref[i];
-          ref1 = block.fields;
-          for (j = 0, len1 = ref1.length; j < len1; j++) {
-            field = ref1[j];
-            if (field.required && field.content === '') {
-              console.log("error");
-            }
-          }
-        }
         return this.output = JSON.stringify(this.blocks);
       }
     }

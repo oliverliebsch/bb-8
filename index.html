@@ -18,9 +18,7 @@
     </script>
     <script id='template-bb8' type='text/x-template'>
       <div>
-        <slot>
-          <textarea cols='100' name='text' rows='8' v-model='output'></textarea>
-        </slot>
+        <textarea cols='100' name='text' rows='8' v-model='output'></textarea>
         <controls :index='-1'></controls>
         <hr>
         <div>
@@ -56,7 +54,7 @@
       </div>
     </script>
     <form id='bb8-form' v-on:submit='submit($event)'>
-      <bb8 initial-json='[{"blocktype":"heading","id":1,"fields":[{"type":"text","content":"Test","required":true}]},{"blocktype":"subheading","id":2,"fields":[{"type":"text","content":"Blub","required":true}]},{"blocktype":"heading","id":3,"fields":[{"type":"text","content":"Bla","required":true}]}]'></bb8>
+      <bb8 initial-json='[{"blocktype":"heading","fields":[{"type":"text","content":"Test","required":true}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Blub","required":true}]},{"blocktype":"heading","fields":[{"type":"text","content":"Bla","required":true}]}]'></bb8>
       <input type='submit' value='submit'>
     </form>
     <script src='bb-8.js'></script>
