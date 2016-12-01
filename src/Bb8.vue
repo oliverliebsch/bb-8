@@ -4,16 +4,17 @@
     <controls :index="-1"></controls>
     <hr>
     <div>
-      <component :index="index" :initialData="block" :is="block.blocktype" :key="block.id" v-for="(block, index) in blocks"></component>
+      <component :index="index" :initialData="block" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
     </div>
   </div>
 </template>
 
 <script lang="coffee">
 import Controls from './components/Controls.vue'
-import Heading from './components/blocks/Heading.vue'
-import Subheading from './components/blocks/Subheading.vue'
-import SingleImage from './components/blocks/SingleImage.vue'
+import HeadingBlock from './components/blocks/HeadingBlock.vue'
+import SubheadingBlock from './components/blocks/SubheadingBlock.vue'
+import TextBlock from './components/blocks/TextBlock.vue'
+import ImageBlock from './components/blocks/ImageBlock.vue'
 
 export default {
   name: 'bb8'
@@ -28,9 +29,10 @@ export default {
 
   components: {
     Controls
-    Heading
-    Subheading
-    SingleImage
+    HeadingBlock
+    SubheadingBlock
+    TextBlock
+    ImageBlock
   }
 
   computed: {

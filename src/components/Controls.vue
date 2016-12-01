@@ -2,7 +2,8 @@
   <div>
     <a v-on:click="addBlock('heading')">Heading</a>
     <a v-on:click="addBlock('subheading')">Subheading</a>
-    <a v-on:click="addBlock('single-image')">Image</a>
+    <a v-on:click="addBlock('text')">Text</a>
+    <a v-on:click="addBlock('image')">Image</a>
   </div>
 </template>
 
