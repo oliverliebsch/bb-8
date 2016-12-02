@@ -1,11 +1,10 @@
 <template>
-  <div>
-    <textarea cols="100" name="text" rows="8" v-model="output"></textarea>
-    <controls :index="-1"></controls>
-    <hr>
-    <div>
-      <component :index="index" :initialData="block" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+  <div class="bb8">
+    <textarea class="bb8-output" v-model="output"></textarea>
+    <div class="bb8-default-controls">
+      <controls :index="-1"></controls>
     </div>
+    <component :index="index" :initialData="block" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -73,4 +72,30 @@ export default {
 </script>
 
 <style lang='sass?indentedSyntax=true'>
+.bb8
+  padding-left: 24px
+
+.bb8-output
+  display: none
+
+.bb8-block
+  position: relative
+  padding: 0 0 1.5em 0
+  &::after
+    display: block
+    content: ""
+    clear: both
+
+.bb8-form-control
+  display: block
+  width: 100%
+  margin: 0
+  padding: 0 0.25em
+  border: none
+  outline: 0
+  background-color: transparent
+  font: inherit
+  text-indent: 1px
+  line-height: inherit
+  color: inherit
 </style>

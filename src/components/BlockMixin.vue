@@ -16,10 +16,5 @@ export default {
 
   created: ->
     _.defaults(this.initialData, {fields: this.fields})
-
-  methods: {
-    updateText: (text) ->
-      this.block.fields[0].content = text
-  }
 }
 </script>

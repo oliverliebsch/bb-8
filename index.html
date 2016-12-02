@@ -4,15 +4,51 @@
     <meta charset="UTF-8">
     <meta content="width=device-width" name="viewport">
     <title>bb-8</title>
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <style>
+      body {
+        background-color: #f8f8f8;
+        font-family: 'Lora', serif;
+      }
+      h1 {
+        text-align: center;
+      }
+      #app {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1em;
+      }
+      #submit {
+        margin-top: 2em;
+        border: none;
+        border-top: 2px solid #ddd;
+        background-color: transparent;
+        font: inherit;
+        text-transform: uppercase;
+        color: #999;
+        cursor: pointer
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
     <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
   </head>
   <body>
     <form id="app" v-on:submit.prevent="submit($event)">
-      <input type="text" value="Manifesto for Agile Software Development">
-      <bb8 initial-json='[{"blocktype":"heading","fields":[{"type":"text","content":"Values"}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Individuals and interactions over processes and tools"}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Working software over comprehensive documentation"}]}]'></bb8>
-      <input type="submit" value="submit">
+      <h1>Manifesto for Agile Software Development</h1>
+      <bb8 initial-json='[{"blocktype":"heading","fields":[{"type":"text","content":"Values"}]},{"blocktype":"text","fields":[{"type":"html","content":"<p>We believe the best way to bring personality and performance to websites and products is through great design and technology. Our goal is to make that process simple, by offering an intuitive and robust directory of open source designer web fonts. By using our extensive catalog, you can share and integrate typography into any design project seamlessly—no matter where you are in the world.</p>"}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Individuals and interactions over processes and tools"}]},{"blocktype":"subheading","fields":[{"type":"text","content":"Working software over comprehensive documentation"}]}]'></bb8>
+      <input type="submit" value="submit" id="submit">
     </form>
     <script src="/dist/build.js"></script>
+    <style>
+    .bb8-block-headline {
+      font-size: 2em;
+      font-weight: bold;
+      color: rgba(255, 82, 82, 0.87);
+    }
+    .bb8-block-subheadline {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+  </style>
   </body>
 </html>

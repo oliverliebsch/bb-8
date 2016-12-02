@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <label>Subheading</label>
-    <input :value="block.fields[0].content" @input="updateText($event.target.value)" required>
+  <div class="bb8-block">
+    <input :value="block.fields[0].content" @input="updateText($event.target.value)" class="bb8-form-control bb8-block-subheadline" placeholder="…" required>
     <controls :index="index"></controls>
-    <hr>
   </div>
 </template>
 
@@ -21,8 +19,15 @@ export default {
       content: ''
     }]
   }
+
+  methods: {
+    updateText: (text) ->
+      this.block.fields[0].content = text
+  }
 }
 </script>
 
 <style lang='sass?indentedSyntax=true'>
+.bb8-block-subheadline
+  appearance: none
 </style>
