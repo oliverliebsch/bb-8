@@ -2,7 +2,7 @@
   <div class="bb8-block">
     <input name="file" required type="file" @change="updateImage($event)">
     <img :src="block.fields[1].content" class="bb8-block-image-preview">
-    <input :value="block.fields[0].content" @input="updateAltText($event.target.value)" class="bb8-form-control bb8-block-image-alt" placeholder="Describe the image" required>
+    <input :value="block.fields[0].content" @blur="updateAltText($event.target.value)" class="bb8-form-control bb8-block-image-alt" placeholder="Describe the image" required>
     <controls :index="index"></controls>
   </div>
 </template>
