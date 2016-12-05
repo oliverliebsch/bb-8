@@ -2,9 +2,9 @@
   <div class="bb8">
     <textarea class="bb8-output" v-model="output"></textarea>
     <div class="bb8-default-controls">
-      <controls :index="-1"></controls>
+      <controls :index="-1" :block-types="blockTypes"></controls>
     </div>
-    <component :index="index" :initialData="block" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+    <component :index="index" :initialData="block" :block-types="blockTypes" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
     blocks: []
     ids: []
     output: ''
+    blockTypes: ['heading', 'subheading', 'text', 'image']
   }
 
   props: ['initialJson']
@@ -72,15 +73,19 @@ export default {
 </script>
 
 <style lang='sass?indentedSyntax=true'>
-.bb8
-  padding-left: 24px
+.icon
+  display: inline-block
+  width: 1em
+  height: 1em
+  stroke-width: 0
+  stroke: currentColor
+  fill: currentColor
 
 .bb8-output
   display: none
 
 .bb8-block
   position: relative
-  padding: 0 0 1.5em 0
   &::after
     display: block
     content: ""
@@ -91,8 +96,6 @@ export default {
   width: 100%
   margin: 0
   padding: 0 0.25em
-  border: none
-  outline: 0
   background-color: transparent
   font: inherit
   text-indent: 1px

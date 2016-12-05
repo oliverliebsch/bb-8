@@ -1,7 +1,7 @@
 <template>
   <div class="bb8-block">
     <input :value="block.fields[0].content" @blur="updateText($event.target.value)" class="bb8-form-control bb8-block-subheadline" placeholder="…" required>
-    <controls :index="index"></controls>
+    <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
 

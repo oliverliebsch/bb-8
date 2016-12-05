@@ -8,7 +8,7 @@ export default {
     block: this.initialData
   }
 
-  props: ['initialData', 'index']
+  props: ['initialData', 'index', 'blockTypes']
 
   components: {
     Controls

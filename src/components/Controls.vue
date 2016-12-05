@@ -1,18 +1,13 @@
 <template>
   <div class="bb8-controls">
-    <a @click="toggleControls()" class="bb8-controls-toggle">+</a>
+    <a @click="toggleControls()" :class="['bb8-controls-toggle', { 'is-active': showControls }]">
+      <svg class="icon icon-add-block"><use xlink:href="#icon-add-block"></use></svg>
+    </a>
     <ul v-if="showControls" class="bb8-controls-block-types">
-      <li class="bb8-controls-item">
-        <a @click="addBlock('heading')" class="bb8-controls-action">Heading</a>
-      </li>
-      <li class="bb8-controls-item">
-        <a @click="addBlock('subheading')" class="bb8-controls-action">Subheading</a>
-      </li>
-      <li class="bb8-controls-item">
-        <a @click="addBlock('text')" class="bb8-controls-action">Text</a>
-      </li>
-      <li class="bb8-controls-item">
-        <a @click="addBlock('image')" class="bb8-controls-action">Image</a>
+      <li class="bb8-controls-item" v-for="blockType in blockTypes">
+        <a @click="addBlock(blockType)" class="bb8-controls-action">
+          <svg :class="'icon icon-' + blockType + '-block'"><use :xlink:href="'#icon-' + blockType + '-block'"></use></svg>
+        </a>
       </li>
     </ul>
   </div>
@@ -26,7 +21,7 @@ export default {
     'showControls': false
   }
 
-  props: ['index']
+  props: ['index', 'blockTypes']
 
   created: ->
     window.addEventListener('mouseup', this.closeControls)
@@ -57,9 +52,7 @@ export default {
 
 <style lang='sass?indentedSyntax=true'>
 .bb8-controls
-  position: absolute
-  bottom: 0
-  left: -24px
+  height: 38px
   &::after
     display: block
     content: ""
@@ -69,19 +62,27 @@ export default {
   display: block
   float: left
   width: 24px
+  padding: 0.5em 0
   opacity: 0.3
   font-weight: bold
   text-align: center
   cursor: pointer
   &:hover, &:focus
     opacity: 1
+  .icon
+    vertical-align: middle
+    transition: transform 0.2s ease-in
+  &.is-active
+    .icon
+      transform: rotate(45deg)
 
 .bb8-controls-block-types
+  display: block
   float: left
-  margin: -1em 0 0
-  padding: 1em
-  background-color: #f8f8f8
+  margin: 0
+  padding: 0.5em
   list-style-type: none
+  line-height: 1
 
 .bb8-controls-item
   float: left
@@ -90,11 +91,17 @@ export default {
     margin-right: 0
 
 .bb8-controls-action
+  display: block
   opacity: 0.3
+  font-size: 1.4em
   cursor: pointer
   &:hover, &:focus
     opacity: 1
+  .icon
+    float: left
 
 .bb8-default-controls
   position: relative
+  .bb8-controls
+    bottom: -1.5em
 </style>
