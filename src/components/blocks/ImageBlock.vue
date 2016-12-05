@@ -46,6 +46,8 @@ export default {
 
     removeImage: ->
       this.block.fields[1].content = ''
+      # TODO: ugly
+      document.getElementById('bb8-file-' + this.index).value = ''
   }
 }
 </script>
