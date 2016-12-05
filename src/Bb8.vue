@@ -1,5 +1,38 @@
 <template>
   <div class="bb8">
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol id="icon-heading-block" viewBox="0 0 32 32">
+          <title>heading-block</title>
+          <path class="path1" d="M15.983 7.828h-3.315v7.136h-6.766v-7.136h-3.326v16.592h3.326v-6.896h6.766v6.896h3.315v-16.592zM29.414 21.86h-6.971l-0.023-0.057 2.95-3.219q1.902-2.062 2.728-3.333t0.826-2.775q0-2.222-1.464-3.555t-4.027-1.333q-2.597 0-4.129 1.553t-1.475 3.797l0.023 0.068h3.235q0-1.298 0.598-2.079t1.748-0.78q1.037 0 1.6 0.667t0.564 1.716q0 0.787-0.49 1.705t-1.652 2.252l-5.365 5.755v2.177h11.322v-2.56z"></path>
+        </symbol>
+        <symbol id="icon-subheading-block" viewBox="0 0 32 32">
+          <title>subheading-block</title>
+          <path class="path1" d="M15.983 7.828h-3.315v7.136h-6.766v-7.136h-3.326v16.592h3.326v-6.896h6.766v6.896h3.315v-16.592zM21.452 17.204h1.868q1.276 0 1.931 0.609t0.655 1.918q0 1.093-0.667 1.731t-1.817 0.638q-1.048 0-1.732-0.618t-0.683-1.572h-3.224l-0.023 0.068q-0.057 2.233 1.6 3.457t3.969 1.224q2.586 0 4.243-1.305t1.657-3.585q0-1.345-0.724-2.36t-2.101-1.505q1.196-0.547 1.88-1.521t0.684-2.056q0-2.278-1.532-3.509t-4.107-1.231q-2.312 0-3.873 1.265t-1.492 3.212l0.023 0.068h3.223q0-0.889 0.638-1.437t1.572-0.547q1.082 0 1.652 0.604t0.57 1.607q0 1.106-0.57 1.727t-1.754 0.621h-1.868v2.496z"></path>
+        </symbol>
+        <symbol id="icon-text-block" viewBox="0 0 24 24">
+          <title>text-block</title>
+          <path class="path1" d="M14 17h-10v2h10v-2zM20 9h-16v2h16v-2zM4 15h16v-2h-16v2zM4 5v2h16v-2h-16z"></path>
+        </symbol>
+        <symbol id="icon-add-block" viewBox="0 0 24 24">
+          <title>add-block</title>
+          <path class="path1" d="M13 7h-2v4h-4v2h4v4h2v-4h4v-2h-4v-4zM12 2c-5.525 0-10 4.475-10 10s4.475 10 10 10 10-4.475 10-10-4.475-10-10-10zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+        </symbol>
+        <symbol id="icon-image-block" viewBox="0 0 24 24">
+          <title>image-block</title>
+          <path class="path1" d="M15.2 12c0 1.767-1.433 3.2-3.2 3.2s-3.2-1.433-3.2-3.2c0-1.767 1.433-3.2 3.2-3.2s3.2 1.433 3.2 3.2z"></path>
+          <path class="path2" d="M9 2l-1.83 2h-3.17c-1.105 0-2 0.895-2 2v12c0 1.105 0.895 2 2 2h16c1.105 0 2-0.895 2-2v-12c0-1.105-0.895-2-2-2h-3.17l-1.83-2h-6zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"></path>
+        </symbol>
+        <symbol id="icon-remove" viewBox="0 0 24 24">
+          <title>remove</title>
+          <path class="path1" d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+        </symbol>
+        <symbol id="icon-upload" viewBox="0 0 24 24">
+          <title>upload</title>
+          <path class="path1" d="M5.016 18h13.969v2.016h-13.969v-2.016zM9 15.984v-6h-3.984l6.984-6.984 6.984 6.984h-3.984v6h-6z"></path>
+        </symbol>
+      </defs>
+    </svg>
     <textarea class="bb8-output" v-model="output"></textarea>
     <div class="bb8-default-controls">
       <controls :index="-1" :block-types="blockTypes"></controls>
