@@ -114,4 +114,5 @@ export default {
 .bb8-block-image-alt
   appearance: none
   text-align: center
+  font-style: italic
 </style>
