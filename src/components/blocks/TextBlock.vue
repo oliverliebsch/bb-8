@@ -37,6 +37,8 @@ export default {
       }
     })
 
+    this.$el.firstChild.focus() if this.block.fields[0].content.length <= 0
+
     # that = this
     # editor.subscribe('editableInput', (event, editable) ->
     #   that.block.fields[0].content = event.target.innerHTML

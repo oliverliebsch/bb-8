@@ -118,6 +118,12 @@ export default {
   stroke: currentColor
   fill: currentColor
 
+.bb8
+  &::after
+    display: block
+    content: ""
+    clear: both
+
 .bb8-output
   display: none
 
@@ -138,4 +144,6 @@ export default {
   text-indent: 1px
   line-height: inherit
   color: inherit
+  &[type=text]
+    appearance: none
 </style>

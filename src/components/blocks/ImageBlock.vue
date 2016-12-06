@@ -15,7 +15,7 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <input :value="block.fields[0].content" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Describe the image" required>
+    <input :value="block.fields[0].content" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -37,6 +37,10 @@ export default {
       content: ''
     }]
   }
+
+  mounted: ->
+    # TODO: brrr…
+    this.$el.getElementsByTagName('label')[0].click() if this.block.fields[1].content.length <= 0
 
   methods: {
     updateAltText: (event) ->
