@@ -86,6 +86,7 @@ export default {
     this.compileBlocks()
 
     eventBus.$on('bb8-add-block', this.addBlock)
+    eventBus.$on('bb8-remove-block', this.removeBlock)
     eventBus.$on('bb8-form-submitted', this.compileBlocks)
 
   methods: {
@@ -97,6 +98,9 @@ export default {
         blocktype: newBlock.blocktype,
         id: this.createBlockId()
       })
+
+    removeBlock: (index) ->
+      this.blocks.splice(index, 1)
 
     compileBlocks: ->
       # TODO: Remove ids?

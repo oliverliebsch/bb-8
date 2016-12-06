@@ -1,14 +1,21 @@
 <template>
   <div class="bb8-block">
     <input name="file" required type="file" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
-    <label :for="'bb8-file-' + index" class="bb8-block-image-label" v-show="block.fields[1].content == ''"><svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg></label>
+    <div class="bb8-block-image-label-wrapper" v-show="block.fields[1].content == ''">
+      <label :for="'bb8-file-' + index" class="bb8-block-image-label" >
+        <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
+      </label>
+      <a class="bb8-block-image-remove" @click="removeBlock()">
+        <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
+      </a>
+    </div>
     <div class="bb8-block-image-wrapper">
       <img :src="block.fields[1].content" class="bb8-block-image-preview">
       <a class="bb8-block-image-remove" v-show="block.fields[1].content != ''" @click="removeImage()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <input :value="block.fields[0].content" @blur="updateAltText($event.target.value)" class="bb8-form-control bb8-block-image-alt" placeholder="Describe the image" required>
+    <input :value="block.fields[0].content" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Describe the image" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -32,8 +39,8 @@ export default {
   }
 
   methods: {
-    updateAltText: (text) ->
-      this.block.fields[0].content = text
+    updateAltText: (event) ->
+      this.block.fields[0].content = event.target.value
 
     updateImage: (event) ->
       file = event.target.files[0]
@@ -48,6 +55,9 @@ export default {
       this.block.fields[1].content = ''
       # TODO: ugly
       document.getElementById('bb8-file-' + this.index).value = ''
+
+    removeBlock: ->
+      eventBus.$emit('bb8-remove-block', this.index)
   }
 }
 </script>
@@ -65,13 +75,18 @@ export default {
       border-color: black
       color: black
 
+.bb8-block-image-label-wrapper
+  position: relative
+  margin: 0 0.25em 0.5em
+  .bb8-block-image-remove
+    top: -12px
+    right: -12px
+
 .bb8-block-image-label
   display: block
-  margin: 0 0.25em 0.5em
   padding: 0.5em 0.5em 0.2em
   border: 2px dashed lightgray
   border-radius: 8px
-  font-size: 1.4em
   text-align: center
   line-height: 1
   color: lightgray
@@ -80,6 +95,8 @@ export default {
   &:hover
     border-color: black
     color: black
+  .icon
+    font-size: 1.4em
 
 .bb8-block-image-wrapper
   position: relative

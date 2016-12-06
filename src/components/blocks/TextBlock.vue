@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <div @blur="updateText($event)" v-html="tempBlock.fields[0].content" class="bb8-form-control bb8-block-text" required></div>
+    <div @blur="updateText($event)" @keyup.delete="removeBlock($event)" v-html="tempBlock.fields[0].content" class="bb8-form-control bb8-block-text" required></div>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -45,6 +45,10 @@ export default {
   methods: {
     updateText: (event) ->
       this.block.fields[0].content = event.target.innerHTML
+
+    removeBlock: (event) ->
+      return if event.target.innerHTML.length > 0
+      eventBus.$emit('bb8-remove-block', this.index)
   }
 }
 </script>
