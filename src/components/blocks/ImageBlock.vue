@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input name="file" accept="image/*" required type="file" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
+    <input :name="'bb8-file-' + index" accept="image/*" required type="file" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
     <div class="bb8-block-image-label-wrapper" v-show="block.fields[1].content == ''">
       <label :for="'bb8-file-' + index" class="bb8-block-image-label" >
         <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
@@ -35,6 +35,8 @@ export default {
 
   mixins: [blockMixin]
 
+  props: ['imageApi']
+
   data: -> {
     fields: [{
       type: 'text'
@@ -57,13 +59,34 @@ export default {
       this.block.fields[0].content = event.target.value
 
     updateImage: (event) ->
+      vm = this
+
       file = event.target.files[0]
 
-      that = this
-      reader = new FileReader()
-      reader.onloadend = (e) ->
-        that.block.fields[1].content = e.target.result if e.target.readyState == FileReader.DONE
-      reader.readAsDataURL(file)
+      # reader = new FileReader()
+      # reader.onloadend = (e) ->
+      #   vm.block.fields[1].content = e.target.result if e.target.readyState == FileReader.DONE
+      # reader.readAsDataURL(file)
+
+      this.uploadImage(file)
+
+    uploadImage: (file) ->
+      vm = this
+
+      fd = new FormData()
+      fd.append('bb8-file-' + this.index, file)
+
+      xhr = new XMLHttpRequest()
+      xhr.open('GET', this.imageApi, true)
+
+      xhr.onload = ->
+        if this.status == 200
+          resp = JSON.parse(this.response)
+          vm.block.fields[1].content = resp.file.url
+        else
+          vm.block.fields[1].content = ''
+
+      xhr.send(fd)
 
     setAlignment: (alignment) ->
       this.fields[2].content = alignment

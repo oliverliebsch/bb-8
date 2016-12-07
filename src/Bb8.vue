@@ -49,7 +49,7 @@
     <div class="bb8-default-controls">
       <controls :index="-1" :block-types="blockTypes"></controls>
     </div>
-    <component :index="index" :initialData="block" :block-types="blockTypes" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+    <component :index="index" :initialData="block" :block-types="blockTypes" :image-api="imageApi" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
     blockTypes: ['heading', 'subheading', 'text', 'image']
   }
 
-  props: ['initialJson']
+  props: ['initialJson', 'imageApi']
 
   components: {
     Controls
