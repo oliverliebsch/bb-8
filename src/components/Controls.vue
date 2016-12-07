@@ -52,7 +52,7 @@ export default {
 
 <style lang='sass?indentedSyntax=true'>
 .bb8-controls
-  height: 38px
+  height: 40px
   &::after
     display: block
     content: ""
