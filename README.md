@@ -2,7 +2,7 @@
 
 > A intuitive content editor
 
-## Build Setup
+## Build setup
 
 ``` bash
 # install dependencies
@@ -15,4 +15,9 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Adding a new block
+1. Create a .vue file under `src/components/blocks` starting with a capital letter and ending with `Block.vue`
+2. See the existing blocks for reference on how to define a block
+3. Import the block in `Bb8.vue` and reference it under `components`
+4. Add an .svg with the name `yourblockname-block`
+4. Add your new block to the `blockTypes` config option, when creating a new BB8 instance
