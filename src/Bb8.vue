@@ -53,7 +53,7 @@
     <div class="bb8-default-controls">
       <controls :index="-1" :block-types="blockTypes"></controls>
     </div>
-    <component :index="index" :initialData="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+    <component :index="index" :block="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -117,8 +117,9 @@ export default {
 
     addBlock: (newBlock) ->
       this.blocks.splice(newBlock.index + 1, 0, {
-        blocktype: newBlock.blocktype,
+        blocktype: newBlock.blocktype
         id: this.createBlockId()
+        fields: {}
       })
 
     removeBlock: (index) ->
@@ -164,9 +165,7 @@ export default {
   margin: 0
   padding: 0 0.25em
   background-color: transparent
-  font: inherit
   text-indent: 1px
-  line-height: inherit
   color: inherit
   &[type=text]
     appearance: none

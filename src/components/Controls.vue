@@ -54,7 +54,10 @@ export default {
 
 <style lang='sass?indentedSyntax=true'>
 .bb8-controls
-  height: 40px
+  height: 32px
+  padding: 0 0.25em
+  font-size: 1.4em
+  line-height: 1
   &::after
     display: block
     content: ""
@@ -62,19 +65,18 @@ export default {
 
 .bb8-controls-toggle
   display: block
-  float: left
-  width: 24px
-  padding: 0.5em 0
+  height: 32px
+  padding: 0.25em 0
   opacity: 0.3
   font-weight: bold
-  text-align: center
   cursor: pointer
   &:hover, &:focus
     opacity: 1
   .icon
-    vertical-align: middle
     transition: transform 0.2s ease-in
   &.is-active
+    float: left
+    text-align: center
     .icon
       transform: rotate(45deg)
 
@@ -82,7 +84,7 @@ export default {
   display: block
   float: left
   margin: 0
-  padding: 0.5em
+  padding: 0 0.5em
   list-style-type: none
   line-height: 1
 
@@ -94,8 +96,9 @@ export default {
 
 .bb8-controls-action
   display: block
+  height: 32px
+  padding: 0.25em 0
   opacity: 0.3
-  font-size: 1.4em
   cursor: pointer
   &:hover, &:focus
     opacity: 1
