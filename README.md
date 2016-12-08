@@ -1,6 +1,6 @@
 # bb-8-2
 
-> A intuitive content editor
+> An intuitive content editor
 
 ## Build setup
 
