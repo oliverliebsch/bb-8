@@ -1,9 +1,10 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube video link and press Enter" v-show="block.fields.id == ''" required>
+    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube or Vimeo video link and press Enter" v-show="block.fields.id == ''" required>
     <div class="bb8-block-video-preview" v-if="block.fields.id != ''">
       <div class="bb8-block-video-wrapper">
-        <iframe class="bb8-block-video-iframe" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
+        <iframe class="bb8-block-video-iframe" v-if="block.fields.plattform == 'youtube'" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
+        <iframe class="bb8-block-video-iframe" v-else-if="block.fields.plattform == 'vimeo'" :src="'https://player.vimeo.com/video/' + block.fields.id + '?title=0&byline=0'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
       <a class="bb8-block-video-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
@@ -24,6 +25,7 @@ export default {
 
   data: -> {
     fields: {
+      plattform: ''
       url: ''
       id: ''
     }
@@ -36,14 +38,22 @@ export default {
     loadVideo: (event) ->
       url = event.target.value
       this.block.fields.url = url
-      id = this.getYouTubeId(url)
+
+      id = this.getVideoId(url)
       this.block.fields.id = id if id
 
-    getYouTubeId: (url) ->
-      prefixes = ['youtube.com/watch?v=', 'youtu.be/', 'youtube.com/embed/']
+    getVideoId: (url) ->
       rawUrl = url.replace(/^(https?:)?\/\/(www\.)?/, '')
       rawUrl = rawUrl.split('&')[0]
       rawUrl = rawUrl.split('#')[0]
+      prefixes = []
+
+      if rawUrl.startsWith('youtu')
+        this.block.fields.plattform = 'youtube'
+        prefixes = ['youtube.com/watch?v=', 'youtu.be/', 'youtube.com/embed/']
+      else if rawUrl.startsWith('vimeo.com')
+        this.block.fields.plattform = 'vimeo'
+        prefixes = ['vimeo.com/']
 
       for prefix in prefixes
         return rawUrl.substr(prefix.length) if rawUrl.indexOf(prefix) == 0
