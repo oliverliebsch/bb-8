@@ -8,6 +8,7 @@
 <script lang="coffee">
 MediumEditor = require('medium-editor')
 
+import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
 
 export default {

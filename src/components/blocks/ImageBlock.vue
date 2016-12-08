@@ -28,6 +28,7 @@
 </template>
 
 <script lang="coffee">
+import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
 
 export default {

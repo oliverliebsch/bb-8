@@ -14,6 +14,8 @@
 </template>
 
 <script lang="coffee">
+import eventBus from './../EventBus.vue'
+
 export default {
   name: 'controls'
 
