@@ -60,7 +60,7 @@ export default {
       return undefined
 
     removeBlock: (event, checkUrl = false) ->
-      return if checkUrl && event.target.value.length >= 0
+      return if checkUrl && event.target.value.length > 0
       eventBus.$emit('bb8-remove-block', this.index)
   }
 }
