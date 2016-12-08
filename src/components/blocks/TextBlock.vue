@@ -7,6 +7,7 @@
 
 <script lang="coffee">
 MediumEditor = require('medium-editor')
+require('medium-editor/dist/css/medium-editor.css')
 
 import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
@@ -58,9 +59,6 @@ export default {
 </script>
 
 <style lang='sass?indentedSyntax=true'>
-// TODO
-@import '/node_modules/medium-editor/dist/css/medium-editor.css'
-
 .bb8-block-text
   overflow: auto
   -webkit-overflow-scrolling: touch
@@ -113,7 +111,7 @@ export default {
   li
     button
       height: 40px
-      padding: 11px 15px
+      padding: 11px 15px !important
       border: none
       background-color: transparent
       color: #ccc
