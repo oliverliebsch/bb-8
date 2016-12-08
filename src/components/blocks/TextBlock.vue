@@ -6,6 +6,8 @@
 </template>
 
 <script lang="coffee">
+MediumEditor = require('medium-editor')
+
 import blockMixin from './../BlockMixin.vue'
 
 export default {
@@ -56,6 +58,9 @@ export default {
 </script>
 
 <style lang='sass?indentedSyntax=true'>
+// TODO
+@import '/node_modules/medium-editor/dist/css/medium-editor.css'
+
 .bb8-block-text
   overflow: auto
   -webkit-overflow-scrolling: touch
@@ -92,4 +97,69 @@ export default {
     list-style-type: disc
   ol
     list-style-type: decimal
+
+// Medium
+.medium-toolbar-arrow-under:after
+  top: 40px
+  border-color: #000 transparent transparent transparent
+
+.medium-toolbar-arrow-over:before
+  border-color: transparent transparent #000 transparent
+
+.medium-editor-toolbar
+  border: none
+  border-radius: 3px
+  background-color: #000
+  li
+    button
+      height: 40px
+      padding: 11px 15px
+      border: none
+      background-color: transparent
+      color: #ccc
+      transition: background-color .2s ease-in, color .2s ease-in
+      &:hover,
+      &.medium-editor-button-active
+        background-color: #000
+        text-decoration: underline
+        color: white
+
+.medium-editor-button-first
+  border-bottom-left-radius: 3px
+  border-top-left-radius: 3px
+
+.medium-editor-button-last
+  border-bottom-right-radius: 3px
+  border-right: none
+  border-top-right-radius: 3px
+
+.medium-editor-toolbar-form
+  overflow: hidden
+  border-radius: 3px
+  background: #000
+  color: #ccc
+  .medium-editor-toolbar-input
+    box-sizing: border-box
+    width: 220px
+    height: 40px
+    padding-left: 16px
+    background: #000
+    color: #ccc
+    &::placeholder
+      color: #f8f5f3
+      color: rgba(248, 245, 243, 0.8)
+  a
+    color: #ccc
+    transform: translateY(2px)
+  .medium-editor-toolbar-close
+    margin-right: 16px
+
+.medium-editor-toolbar-anchor-preview
+  padding: 5px 12px
+  border-radius: 3px
+  background: #000
+
+.medium-editor-anchor-preview a
+  color: #ccc
+  text-decoration: none
 </style>

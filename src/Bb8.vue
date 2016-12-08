@@ -54,6 +54,9 @@
 </template>
 
 <script lang="coffee">
+_ = require('lodash/core')
+
+import eventBus from './EventBus.vue'
 import Controls from './components/Controls.vue'
 import HeadingBlock from './components/blocks/HeadingBlock.vue'
 import SubheadingBlock from './components/blocks/SubheadingBlock.vue'

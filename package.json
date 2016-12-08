@@ -1,5 +1,5 @@
 {
-  "name": "bb-8-2",
+  "name": "bb-8",
   "description": "A intuitive content editor",
   "version": "1.0.0",
   "author": "Oliver Liebsch <liebsch@gamboo.net>",
@@ -9,9 +9,10 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.1.0"
+    "vue": "^2.1.4"
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.3",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
@@ -20,7 +21,9 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "node-sass": "^3.13.0",
+    "postcss-loader": "^1.2.0",
     "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.1.0-beta.27",

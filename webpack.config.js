@@ -14,7 +14,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          // vue-loader options go here
+
         }
       },
       {
@@ -30,13 +30,13 @@ module.exports = {
         }
       },
       {
-        test: /\.sass$/,
-        loaders: ['style', 'css', 'sass']
+        test: /\.(css|sass)$/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.coffee$/,
         loader: "coffee-loader"
-      },
+      }
     ]
   },
   resolve: {
