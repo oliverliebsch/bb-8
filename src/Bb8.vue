@@ -45,11 +45,11 @@
         </symbol>
       </defs>
     </svg>
-    <textarea class="bb8-output" v-model="output"></textarea>
+    <textarea class="bb8-output" :name="config.name" v-model="output"></textarea>
     <div class="bb8-default-controls">
       <controls :index="-1" :block-types="blockTypes"></controls>
     </div>
-    <component :index="index" :initialData="block" :block-types="blockTypes" :image-api="imageApi" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+    <component :index="index" :initialData="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -71,9 +71,10 @@ export default {
     ids: []
     output: ''
     blockTypes: ['heading', 'subheading', 'text', 'image']
+    config: {}
   }
 
-  props: ['initialJson', 'imageApi']
+  props: ['bb8InitialData', 'bb8Config']
 
   components: {
     Controls
@@ -89,7 +90,8 @@ export default {
   }
 
   created: ->
-    blocks = JSON.parse(this.initialJson)
+    this.config = JSON.parse(this.bb8Config)[0]
+    blocks = JSON.parse(this.bb8InitialData)
 
     # The blocks list relies on its child component states
     # so we have to track the list by a unique id instead of the index
@@ -134,6 +136,8 @@ export default {
   fill: currentColor
 
 .bb8
+  float: left
+  width: 100%
   &::after
     display: block
     content: ""

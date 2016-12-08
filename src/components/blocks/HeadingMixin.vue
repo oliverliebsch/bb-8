@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields[0].content" @blur="updateText($event)" @keyup.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
+    <input :value="block.fields.content" @blur="updateText($event)" @keyup.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -14,18 +14,17 @@ export default {
   mixins: [blockMixin]
 
   data: -> {
-    fields: [{
-      type: 'text'
+    fields: {
       content: ''
-    }]
+    }
   }
 
   mounted: ->
-    this.$el.firstChild.focus() if this.block.fields[0].content.length <= 0
+    this.$el.firstChild.focus() if this.block.fields.content.length <= 0
 
   methods: {
     updateText: (event) ->
-      this.block.fields[0].content = event.target.value
+      this.block.fields.content = event.target.value
 
     removeBlock: (event) ->
       return if event.target.value.length > 0

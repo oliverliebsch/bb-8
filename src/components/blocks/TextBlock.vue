@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <div @blur="updateText($event)" @keyup.delete="removeBlock($event)" v-html="tempBlock.fields[0].content" class="bb8-form-control bb8-block-text" required></div>
+    <div @blur="updateText($event)" @keyup.delete="removeBlock($event)" v-html="content" class="bb8-form-control bb8-block-text" required></div>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -16,15 +16,14 @@ export default {
   mixins: [blockMixin]
 
   data: -> {
-    tempBlock: {}
-    fields: [{
-      type: 'html'
+    content: ''
+    fields: {
       content: ''
-    }]
+    }
   }
 
   created: ->
-    this.tempBlock = _.cloneDeep(this.block)
+    this.content = this.block.fields.content
 
   mounted: ->
     editor = new MediumEditor(this.$el.querySelector('.bb8-block-text'), {
@@ -39,16 +38,16 @@ export default {
       }
     })
 
-    this.$el.firstChild.focus() if this.block.fields[0].content.length <= 0
+    this.$el.firstChild.focus() if this.block.fields.content.length <= 0
 
     # that = this
     # editor.subscribe('editableInput', (event, editable) ->
-    #   that.block.fields[0].content = event.target.innerHTML
+    #   that.block.fields.content = event.target.innerHTML
     # )
 
   methods: {
     updateText: (event) ->
-      this.block.fields[0].content = event.target.innerHTML
+      this.block.fields.content = event.target.innerHTML
 
     removeBlock: (event) ->
       return if event.target.innerHTML.length > 0

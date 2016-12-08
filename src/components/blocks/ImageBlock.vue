@@ -1,7 +1,7 @@
 <template>
   <div class="bb8-block">
-    <input :name="'bb8-file-' + index" accept="image/*" required type="file" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
-    <div class="bb8-block-image-label-wrapper" v-show="block.fields[1].content == ''">
+    <input name="image[file]" type="file" accept="image/*" :required="block.fields.image == ''" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
+    <div class="bb8-block-image-label-wrapper" v-show="block.fields.image == ''">
       <label :for="'bb8-file-' + index" class="bb8-block-image-label" >
         <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
       </label>
@@ -9,11 +9,11 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <div class="bb8-block-image-wrapper" v-if="block.fields[1].content != ''">
-      <div :class="['bb8-block-image-preview-wrapper', fields[2].content]">
-        <img :src="block.fields[1].content" class="bb8-block-image-preview">
+    <div class="bb8-block-image-wrapper" v-if="block.fields.image != ''">
+      <div :class="['bb8-block-image-preview-wrapper', fields.alignment]">
+        <img :src="block.fields.image" class="bb8-block-image-preview">
       </div>
-      <div :class="['bb8-block-image-alignment', fields[2].content]">
+      <div :class="['bb8-block-image-alignment', fields.alignment]">
         <svg class="icon icon-image-left" @click="setAlignment('left')"><use xlink:href="#icon-image-left"></use></svg>
         <svg class="icon icon-image-center" @click="setAlignment('center')"><use xlink:href="#icon-image-center"></use></svg>
         <svg class="icon icon-image-right" @click="setAlignment('right')"><use xlink:href="#icon-image-right"></use></svg>
@@ -22,7 +22,7 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <input :value="block.fields[0].content" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
+    <input :value="block.fields.alt" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -35,28 +35,23 @@ export default {
 
   mixins: [blockMixin]
 
-  props: ['imageApi']
+  props: ['config']
 
   data: -> {
-    fields: [{
-      type: 'text'
-      content: ''
-    }, {
-      type: 'image'
-      content: ''
-    }, {
-      type: 'alignment'
-      content: 'center'
-    }]
+    fields: {
+      alt: ''
+      image: ''
+      alignment: 'center'
+    }
   }
 
   mounted: ->
     # TODO: brrr…
-    this.$el.getElementsByTagName('label')[0].click() if this.block.fields[1].content.length <= 0
+    this.$el.getElementsByTagName('label')[0].click() if this.block.fields.image.length <= 0
 
   methods: {
     updateAltText: (event) ->
-      this.block.fields[0].content = event.target.value
+      this.block.fields.alt = event.target.value
 
     updateImage: (event) ->
       vm = this
@@ -65,34 +60,37 @@ export default {
 
       # reader = new FileReader()
       # reader.onloadend = (e) ->
-      #   vm.block.fields[1].content = e.target.result if e.target.readyState == FileReader.DONE
+      #   vm.block.fields.image = e.target.result if e.target.readyState == FileReader.DONE
       # reader.readAsDataURL(file)
 
-      this.uploadImage(file)
+      this.uploadImage(file) if file
 
     uploadImage: (file) ->
       vm = this
 
       fd = new FormData()
-      fd.append('bb8-file-' + this.index, file)
+      fd.append('image[file]', file)
 
       xhr = new XMLHttpRequest()
-      xhr.open('GET', this.imageApi, true)
+      xhr.open('POST', this.config.imageApi)
+
+      for header, value of this.config.apiHeaders
+        xhr.setRequestHeader(header, value)
 
       xhr.onload = ->
         if this.status == 200
           resp = JSON.parse(this.response)
-          vm.block.fields[1].content = resp.file.url
+          vm.block.fields.image = resp.file.url
         else
-          vm.block.fields[1].content = ''
+          vm.block.fields.image = ''
 
       xhr.send(fd)
 
     setAlignment: (alignment) ->
-      this.fields[2].content = alignment
+      this.fields.alignment = alignment
 
     removeImage: ->
-      this.block.fields[1].content = ''
+      this.block.fields.image = ''
       # TODO: ugly
       document.getElementById('bb8-file-' + this.index).value = ''
 
@@ -107,8 +105,6 @@ export default {
   overflow: hidden
   position: absolute
   z-index: -1
-  width: 0.1px
-  height: 0.1px
   opacity: 0
   &:focus
     .bb8-block-image-label
