@@ -1,6 +1,12 @@
-# bb-8-2
+# bb-8
 
-> An intuitive content editor
+> A simple and intuitive content editor
+
+- use predefined blocks to add content
+- clean ui
+- outputs json
+- minimum css
+- based on vue.js
 
 ## Build setup
 
@@ -15,9 +21,38 @@ npm run dev
 npm run build
 ```
 
+## Built-in blocks
+- heading
+- subheading
+- text (contenteditable attribute with [MediumEditor](https://github.com/yabwe/medium-editor)
+- image with alt attribute
+- video
+
 ## Adding a new block
 1. Create a .vue file under `src/components/blocks` starting with a capital letter and ending with `Block.vue`
 2. See the existing blocks for reference on how to define a block
 3. Import the block in `Bb8.vue` and reference it under `components`
 4. Add an .svg with the name `yourblockname-block`
 4. Add your new block to the `blockTypes` config option, when creating a new BB8 instance
+
+## License
+Copyright Oliver Liebsch, http://oliver-liebsch.de
+
+The following license applies to all parts of this software except as
+documented below:
+
+====
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+====
+
+Some of the icons come from https://material.io/icons/.
+All files located in the node_modules directory are
+externally maintained libraries used by this software which have their
+own licenses; we recommend you read them, as their terms may differ from
+the terms above.
