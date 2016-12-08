@@ -67,11 +67,11 @@ export default {
   name: 'bb8'
 
   data: -> {
+    config: {}
+    blockTypes: ['heading', 'subheading', 'text', 'image']
     blocks: []
     ids: []
     output: ''
-    blockTypes: ['heading', 'subheading', 'text', 'image']
-    config: {}
   }
 
   props: ['bb8InitialData', 'bb8Config']
