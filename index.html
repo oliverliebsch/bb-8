@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=device-width" name="viewport">
     <title>bb-8</title>
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <style>
       body {
         background-color: #f8f8f8;
-        font-family: 'Lora', serif;
+        font-family: 'BlinkMacSystemFont', sans-serif;
       }
       h1 {
         text-align: center;
       }
-      #app {
+      #bb8-form {
         max-width: 800px;
         margin: 0 auto;
         padding: 1em;
@@ -32,8 +31,8 @@
   </head>
   <body>
     <form id="bb8-form">
-      <h1>Manifesto for Agile Software Development</h1>
-      <bb8 bb8-config='[{"name":"content","blockTypes":["heading","subheading","text","image","video"],"imageApi":"/image.json","apiHeaders":{"X-CSRF-Token":"123"}}]' bb8-initial-data='[{"blocktype":"heading","fields":{"content":"Agile values"}},{"blocktype":"image","fields":{"alt":"Zweitag","image":"zweitag.png","alignment":"center"}},{"blocktype":"text","fields":{"content":"<p>We believe the best way to bring personality and performance to websites and products is through great design and technology. Our goal is to make that process simple, by offering an intuitive and robust directory of open source designer web fonts. By using our extensive catalog, you can share and integrate typography into any design project seamlessly—no matter where you are in the world.</p>"}},{"blocktype":"subheading","fields":{"content":"Individuals and interactions over processes and tools"}},{"blocktype":"subheading","fields":{"content":"Working software over comprehensive documentation"}}]'></bb8>
+      <h1>bb8</h1>
+      <bb8 bb8-config='[{"name":"content","blockTypes":["heading","subheading","text","image","video"],"imageApi":"/image.json","apiHeaders":{"X-CSRF-Token":"123"}}]' bb8-initial-data='[]'></bb8>
       <input type="submit" value="submit" id="submit">
     </form>
     <script src="/dist/bb8.js"></script>
