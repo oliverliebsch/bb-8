@@ -2,6 +2,8 @@
 
 > A simple and intuitive content editor
 
+![bb-8](http://oliver-liebsch.de/bb8.gif)
+
 - use predefined blocks to add content
 - clean ui
 - outputs json
@@ -35,7 +37,7 @@ npm run build
 4. Add an .svg with the name `yourblockname-block`
 4. Add your new block to the `blockTypes` config option, when creating a new BB8 instance
 
-## License
+## License: MIT
 Copyright Oliver Liebsch, http://oliver-liebsch.de
 
 The following license applies to all parts of this software except as
