@@ -91,6 +91,7 @@ export default {
 
   created: ->
     this.config = JSON.parse(this.bb8Config)[0]
+    this.blockTypes = this.config.blockTypes if this.config.blockTypes.length > 0
     blocks = JSON.parse(this.bb8InitialData)
 
     # The blocks list relies on its child component states
