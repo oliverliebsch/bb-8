@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.url" @keyup.enter="loadVideo($event)" @keyup.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube video link and press Enter" v-show="block.fields.id == ''" required>
+    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube video link and press Enter" v-show="block.fields.id == ''" required>
     <div class="bb8-block-video-preview" v-if="block.fields.id != ''">
       <div class="bb8-block-video-wrapper">
         <iframe class="bb8-block-video-iframe" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
@@ -50,7 +50,7 @@ export default {
       return undefined
 
     removeBlock: (event, checkUrl = false) ->
-      return if checkUrl && event.target.value.length > 0
+      return if checkUrl && event.target.value.length >= 0
       eventBus.$emit('bb8-remove-block', this.index)
   }
 }
@@ -64,6 +64,7 @@ export default {
 .bb8-block-video-wrapper
   position: relative
   overflow: hidden
+  width: 100%
   height: 0
   padding-bottom: 56.25%
 

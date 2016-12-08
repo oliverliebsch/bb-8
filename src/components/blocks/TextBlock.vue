@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <div @blur="updateText($event)" @keyup.delete="removeBlock($event)" v-html="content" class="bb8-form-control bb8-block-text" required></div>
+    <div @blur="updateText($event)" @keydown.delete="removeBlock($event)" v-html="content" class="bb8-form-control bb8-block-text" required></div>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>

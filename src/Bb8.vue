@@ -76,7 +76,6 @@ export default {
     blockTypes: ['heading', 'subheading', 'text', 'image', 'video']
     blocks: []
     ids: []
-    output: ''
   }
 
   props: ['bb8InitialData', 'bb8Config']
@@ -93,6 +92,8 @@ export default {
   computed: {
     ids: ->
       _.map(this.blocks, 'id').sort()
+    output: ->
+      JSON.stringify(this.blocks)
   }
 
   created: ->
@@ -107,11 +108,8 @@ export default {
 
     this.blocks = blocks
 
-    this.compileBlocks()
-
     eventBus.$on('bb8-add-block', this.addBlock)
     eventBus.$on('bb8-remove-block', this.removeBlock)
-    eventBus.$on('bb8-form-submitted', this.compileBlocks)
 
   methods: {
     createBlockId: ->
@@ -125,10 +123,6 @@ export default {
 
     removeBlock: (index) ->
       this.blocks.splice(index, 1)
-
-    compileBlocks: ->
-      # TODO: Remove ids?
-      this.output = JSON.stringify(this.blocks)
   }
 }
 </script>
@@ -145,6 +139,10 @@ export default {
 .bb8
   float: left
   width: 100%
+  *,
+  *::before,
+  *::after
+    box-sizing: border-box
   &::after
     display: block
     content: ""

@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.content" @blur="updateText($event)" @keyup.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
+    <input :value="block.fields.content" @blur="updateText($event)" @keydown.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
