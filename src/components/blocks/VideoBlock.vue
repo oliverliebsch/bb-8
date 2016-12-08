@@ -1,0 +1,97 @@
+<template>
+  <div class="bb8-block">
+    <input :value="block.fields.url" @keyup.enter="loadVideo($event)" @keyup.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube video link and press Enter" v-show="block.fields.id == ''" required>
+    <div class="bb8-block-video-preview" v-if="block.fields.id != ''">
+      <div class="bb8-block-video-wrapper">
+        <iframe class="bb8-block-video-iframe" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <a class="bb8-block-video-remove" @click="removeBlock()">
+        <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
+      </a>
+    </div>
+    <controls :index="index" :block-types="blockTypes"></controls>
+  </div>
+</template>
+
+<script lang="coffee">
+import eventBus from './../../EventBus.vue'
+import blockMixin from './../BlockMixin.vue'
+
+export default {
+  name: 'video'
+
+  mixins: [blockMixin]
+
+  data: -> {
+    fields: {
+      url: ''
+      id: ''
+    }
+  }
+
+  mounted: ->
+    this.$el.firstChild.focus() if this.block.fields.url.length <= 0
+
+  methods: {
+    loadVideo: (event) ->
+      url = event.target.value
+      this.block.fields.url = url
+      id = this.getYouTubeId(url)
+      this.block.fields.id = id if id
+
+    getYouTubeId: (url) ->
+      prefixes = ['youtube.com/watch?v=', 'youtu.be/', 'youtube.com/embed/']
+      rawUrl = url.replace(/^(https?:)?\/\/(www\.)?/, '')
+      rawUrl = rawUrl.split('&')[0]
+      rawUrl = rawUrl.split('#')[0]
+
+      for prefix in prefixes
+        return rawUrl.substr(prefix.length) if rawUrl.indexOf(prefix) == 0
+      return undefined
+
+    removeBlock: (event, checkUrl = false) ->
+      return if checkUrl && event.target.value.length > 0
+      eventBus.$emit('bb8-remove-block', this.index)
+  }
+}
+</script>
+
+<style lang='sass?indentedSyntax=true'>
+.bb8-block-video-preview
+  position: relative
+  margin: 0 0.25em 0.5em
+
+.bb8-block-video-wrapper
+  position: relative
+  overflow: hidden
+  height: 0
+  padding-bottom: 56.25%
+
+.bb8-block-video-remove
+  display: table
+  position: absolute
+  top: -12px
+  right: -12px
+  width: 24px
+  height: 24px
+  padding: 2px
+  border-radius: 50%
+  background-color: black
+  line-height: 1
+  color: white
+  cursor: pointer
+  transition: transform 0.2s ease-in
+  &:hover
+    transform: rotate(90deg)
+  .icon
+    display: table-cell
+    width: 100%
+    height: 100%
+
+.bb8-block-video-iframe
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+</style>

@@ -35,6 +35,10 @@
           <title>image-left</title>
           <path class="path1" d="M3.34 4.010h25.31v3.98h-25.31v-3.98zM3.34 24.040h25.31v3.98h-25.31v-3.98zM3.34 9.97h11.61v12.070h-11.61v-12.070zM17.030 9.973h11.61v2.634h-11.61v-2.634zM17.040 19.408h11.61v2.634h-11.61v-2.635zM17.030 14.791h11.61v2.634h-11.61v-2.634z"></path>
         </symbol>
+        <symbol id="icon-video-block" viewBox="0 0 24 24">
+          <title>video-block</title>
+          <path class="path1" d="M12 20.016c4.406 0 8.016-3.609 8.016-8.016s-3.609-8.016-8.016-8.016-8.016 3.609-8.016 8.016 3.609 8.016 8.016 8.016zM12 2.016c5.531 0 9.984 4.453 9.984 9.984s-4.453 9.984-9.984 9.984-9.984-4.453-9.984-9.984 4.453-9.984 9.984-9.984zM9.984 16.5v-9l6 4.5z"></path>
+        </symbol>
         <symbol id="icon-remove" viewBox="0 0 24 24">
           <title>remove</title>
           <path class="path1" d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
@@ -62,13 +66,14 @@ import HeadingBlock from './components/blocks/HeadingBlock.vue'
 import SubheadingBlock from './components/blocks/SubheadingBlock.vue'
 import TextBlock from './components/blocks/TextBlock.vue'
 import ImageBlock from './components/blocks/ImageBlock.vue'
+import VideoBlock from './components/blocks/VideoBlock.vue'
 
 export default {
   name: 'bb8'
 
   data: -> {
     config: {}
-    blockTypes: ['heading', 'subheading', 'text', 'image']
+    blockTypes: ['heading', 'subheading', 'text', 'image', 'video']
     blocks: []
     ids: []
     output: ''
@@ -82,6 +87,7 @@ export default {
     SubheadingBlock
     TextBlock
     ImageBlock
+    VideoBlock
   }
 
   computed: {
