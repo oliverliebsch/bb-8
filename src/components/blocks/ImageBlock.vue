@@ -1,6 +1,7 @@
 <template>
   <div class="bb8-block">
     <input name="image[file]" type="file" accept="image/*" :required="block.fields.image == ''" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
+
     <div class="bb8-block-image-label-wrapper" v-show="block.fields.image == ''">
       <label :for="'bb8-file-' + index" class="bb8-block-image-label" >
         <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
@@ -9,6 +10,7 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
+
     <div class="bb8-block-image-wrapper" v-if="block.fields.image != ''">
       <div :class="['bb8-block-image-preview-wrapper', fields.alignment]">
         <img :src="block.fields.image" class="bb8-block-image-preview">
@@ -22,7 +24,8 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <input :value="block.fields.alt" @blur="updateAltText($event)" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
+
+    <input v-model="block.fields.alt" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -51,9 +54,6 @@ export default {
     this.$el.getElementsByTagName('label')[0].click() if this.block.fields.image.length <= 0
 
   methods: {
-    updateAltText: (event) ->
-      this.block.fields.alt = event.target.value
-
     updateImage: (event) ->
       vm = this
 

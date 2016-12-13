@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.content" @blur="updateText($event)" @keydown.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
+    <input v-model="block.fields.content" @keydown.delete="removeBlock($event)" :class="['bb8-form-control', 'bb8-block-' + blockCss]" placeholder="…" required>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
 </template>
@@ -24,9 +24,6 @@ export default {
     this.$el.firstChild.focus() if this.block.fields.content.length <= 0
 
   methods: {
-    updateText: (event) ->
-      this.block.fields.content = event.target.value
-
     removeBlock: (event) ->
       return if event.target.value.length > 0
       eventBus.$emit('bb8-remove-block', this.index)
