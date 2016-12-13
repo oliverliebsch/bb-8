@@ -39,6 +39,10 @@
           <title>video-block</title>
           <path class="path1" d="M12 20.016c4.406 0 8.016-3.609 8.016-8.016s-3.609-8.016-8.016-8.016-8.016 3.609-8.016 8.016 3.609 8.016 8.016 8.016zM12 2.016c5.531 0 9.984 4.453 9.984 9.984s-4.453 9.984-9.984 9.984-9.984-4.453-9.984-9.984 4.453-9.984 9.984-9.984zM9.984 16.5v-9l6 4.5z"></path>
         </symbol>
+        <symbol id="icon-teaser-block" viewBox="0 0 32 32">
+          <title>teaser-block</title>
+          <path class="path1" d="M17.041 13.011v2.639h11.608v-2.639h-11.608zM17.041 17.72v2.639h11.608v-2.639h-11.608zM3.35 7.040v4.009h25.299v-4.009h-25.299zM3.351 13.010v7.349h11.608v-7.349h-11.608zM4.235 19.4l2.426-3.121 1.791 2.111 2.507-3.151 3.122 4.161zM3.35 22.32h25.299v2.639h-25.299v-2.639z"></path>
+        </symbol>
         <symbol id="icon-remove" viewBox="0 0 24 24">
           <title>remove</title>
           <path class="path1" d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
@@ -67,13 +71,14 @@ import SubheadingBlock from './components/blocks/SubheadingBlock.vue'
 import TextBlock from './components/blocks/TextBlock.vue'
 import ImageBlock from './components/blocks/ImageBlock.vue'
 import VideoBlock from './components/blocks/VideoBlock.vue'
+import TeaserBlock from './components/blocks/TeaserBlock.vue'
 
 export default {
   name: 'bb8'
 
   data: -> {
     config: {}
-    blockTypes: ['heading', 'subheading', 'text', 'image', 'video']
+    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser']
     blocks: []
     ids: []
   }
@@ -87,6 +92,7 @@ export default {
     TextBlock
     ImageBlock
     VideoBlock
+    TeaserBlock
   }
 
   computed: {
@@ -165,6 +171,7 @@ export default {
   margin: 0
   padding: 0 0.25em
   background-color: transparent
+  font: inherit
   text-indent: 1px
   color: inherit
   &[type=text]
