@@ -1,30 +1,36 @@
 <template>
   <div class="bb8-block">
-    <input v-model="block.fields.title" class="bb8-form-control bb8-block-teaser-title" placeholder="Title" required>
-    <div class="bb8-block-teaser-content">
-      <div class="bb8-block-teaser-left">
-        <input name="image[file]" type="file" accept="image/*" :id="'bb8-file-' + index" class="bb8-block-teaser-image-fileinput" @change="updateImage($event)">
+    <div class="bb8-block-teaser">
+      <input v-model="block.fields.title" class="bb8-form-control bb8-block-teaser-title" placeholder="Title" required>
+      <div class="bb8-block-teaser-content">
+        <div class="bb8-block-teaser-left">
+          <input name="image[file]" type="file" accept="image/*" :id="'bb8-file-' + index" class="bb8-block-teaser-image-fileinput" @change="updateImage($event)">
 
-        <div class="bb8-block-teaser-image-label-wrapper" v-show="block.fields.image == ''">
-          <label :for="'bb8-file-' + index" class="bb8-block-teaser-image-label" >
-            <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
-          </label>
-        </div>
-
-        <div class="bb8-block-teaser-image-wrapper" v-if="block.fields.image != ''">
-          <div :class="['bb8-block-teaser-image-preview-wrapper', fields.alignment]">
-            <img :src="block.fields.image" class="bb8-block-image-preview">
+          <div class="bb8-block-teaser-image-label-wrapper" v-show="block.fields.image == ''">
+            <label :for="'bb8-file-' + index" class="bb8-block-teaser-image-label" >
+              <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
+            </label>
           </div>
-          <a class="bb8-block-teaser-image-remove" @click="removeImage()">
-            <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
-          </a>
+
+          <div class="bb8-block-teaser-image-wrapper" v-if="block.fields.image != ''">
+            <div :class="['bb8-block-teaser-image-preview-wrapper', fields.alignment]">
+              <img :src="block.fields.image" class="bb8-block-image-preview">
+            </div>
+            <a class="bb8-block-teaser-image-remove" @click="removeImage()">
+              <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="bb8-block-teaser-right">
+          <textarea v-model="block.fields.text" class="bb8-form-control bb8-block-teaser-text" rows="4" placeholder="Type your text" required></textarea>
+          <input v-model="block.fields.link" class="bb8-form-control" placeholder="http://…">
         </div>
       </div>
 
-      <div class="bb8-block-teaser-right">
-        <textarea v-model="block.fields.text" class="bb8-form-control bb8-block-teaser-text" rows="4" placeholder="Type your text" required></textarea>
-        <input v-model="block.fields.link" class="bb8-form-control" placeholder="http://…">
-      </div>
+      <a class="bb8-block-image-remove" @click="removeBlock()">
+        <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
+      </a>
     </div>
     <controls :index="index" :block-types="blockTypes"></controls>
   </div>
