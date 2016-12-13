@@ -1,11 +1,11 @@
 <template>
   <div class="bb8-controls">
-    <a @click="toggleControls()" :class="['bb8-controls-toggle', { 'is-active': showControls }]">
+    <a role="button" tabindex="0" @keyup.enter="toggleControls()" @click="toggleControls()" :class="['bb8-controls-toggle', { 'is-active': showControls }]">
       <svg class="icon icon-add-block"><use xlink:href="#icon-add-block"></use></svg>
     </a>
     <ul v-if="showControls" class="bb8-controls-block-types">
       <li class="bb8-controls-item" v-for="blockType in blockTypes">
-        <a @click="addBlock(blockType)" class="bb8-controls-action">
+        <a role="button" tabindex="0" @keyup.enter="addBlock(blockType)" @click="addBlock(blockType)" class="bb8-controls-action">
           <svg :class="'icon icon-' + blockType + '-block'"><use :xlink:href="'#icon-' + blockType + '-block'"></use></svg>
         </a>
       </li>
