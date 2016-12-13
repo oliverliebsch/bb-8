@@ -16,7 +16,7 @@ export default {
         fd.append('image[file]', file)
 
         xhr = new XMLHttpRequest()
-        xhr.open('POST', this.config.imageApi)
+        xhr.open(this.config.httpMethod, this.config.imageApi)
 
         for header, value of this.config.apiHeaders
           xhr.setRequestHeader(header, value)
