@@ -11,6 +11,6 @@ export default {
   }
 
   created: ->
-    this.block.fields = this.fields if _.size(this.block.fields) <= 0
+    this.block.fields = this.fields if Object.keys(this.block.fields).length <= 0
 }
 </script>

@@ -62,8 +62,6 @@
 </template>
 
 <script lang="coffee">
-_ = require('lodash/core')
-
 import eventBus from './EventBus.vue'
 import Controls from './components/Controls.vue'
 import HeadingBlock from './components/blocks/HeadingBlock.vue'
@@ -97,7 +95,7 @@ export default {
 
   computed: {
     ids: ->
-      _.map(this.blocks, 'id').sort()
+      this.blocks.map((b) -> b.id).sort()
     output: ->
       JSON.stringify(this.blocks)
   }
@@ -119,7 +117,8 @@ export default {
 
   methods: {
     createBlockId: ->
-      if this.ids.length then _.last(this.ids) + 1 else 1
+      idsLength = this.ids.length
+      if idsLength then this.ids[idsLength - 1] + 1 else 1
 
     addBlock: (newBlock) ->
       this.blocks.splice(newBlock.index + 1, 0, {
