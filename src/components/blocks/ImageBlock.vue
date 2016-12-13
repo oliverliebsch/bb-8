@@ -33,13 +33,12 @@
 <script lang="coffee">
 import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
+import uploadMixin from './../UploadMixin.vue'
 
 export default {
   name: 'single-image'
 
-  mixins: [blockMixin]
-
-  props: ['config']
+  mixins: [blockMixin, uploadMixin]
 
   data: -> {
     fields: {
@@ -55,37 +54,7 @@ export default {
 
   methods: {
     updateImage: (event) ->
-      vm = this
-
-      file = event.target.files[0]
-
-      # reader = new FileReader()
-      # reader.onloadend = (e) ->
-      #   vm.block.fields.image = e.target.result if e.target.readyState == FileReader.DONE
-      # reader.readAsDataURL(file)
-
-      this.uploadImage(file) if file
-
-    uploadImage: (file) ->
-      vm = this
-
-      fd = new FormData()
-      fd.append('image[file]', file)
-
-      xhr = new XMLHttpRequest()
-      xhr.open('POST', this.config.imageApi)
-
-      for header, value of this.config.apiHeaders
-        xhr.setRequestHeader(header, value)
-
-      xhr.onload = ->
-        if this.status == 200
-          resp = JSON.parse(this.response)
-          vm.block.fields.image = resp.file.url
-        else
-          vm.block.fields.image = ''
-
-      xhr.send(fd)
+      this.uploadImage(event)
 
     setAlignment: (alignment) ->
       this.fields.alignment = alignment

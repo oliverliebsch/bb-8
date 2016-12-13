@@ -33,11 +33,12 @@
 <script lang="coffee">
 import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
+import uploadMixin from './../UploadMixin.vue'
 
 export default {
   name: 'teaser'
 
-  mixins: [blockMixin]
+  mixins: [blockMixin, uploadMixin]
 
   data: -> {
     fields: {
@@ -49,6 +50,14 @@ export default {
   }
 
   methods: {
+    updateImage: (event) ->
+      this.uploadImage(event)
+
+    removeImage: ->
+      this.block.fields.image = ''
+      # TODO: ugly
+      document.getElementById('bb8-file-' + this.index).value = ''
+
     removeBlock: (event, checkUrl = false) ->
       return if checkUrl && event.target.value.length >= 0
       eventBus.$emit('bb8-remove-block', this.index)
@@ -84,9 +93,6 @@ export default {
 .bb8-block-teaser-image-label-wrapper
   position: relative
   margin: 0 0.25em 0.5em
-  .bb8-block-teaser-image-remove
-    top: -12px
-    right: -12px
 
 .bb8-block-teaser-image-label
   display: block
@@ -103,6 +109,10 @@ export default {
     color: black
   .icon
     font-size: 1.4em
+
+.bb8-block-teaser-image-wrapper
+  position: relative
+  margin: 0 0.25em 0.5em
 
 .bb8-block-teaser-image-remove
   display: table
