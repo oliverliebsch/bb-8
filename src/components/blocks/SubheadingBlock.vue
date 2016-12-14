@@ -1,10 +1,10 @@
 <script lang="coffee">
-import headingkMixin from './HeadingMixin.vue'
+import singleTextMixin from './SingleTextMixin.vue'
 
 export default {
   name: 'subheading'
 
-  mixins: [headingkMixin]
+  mixins: [singleTextMixin]
 
   data: -> {
     blockCss: 'subheading'

@@ -67,6 +67,7 @@ export default {
   display: block
   height: 32px
   padding: 0.25em 0
+  outline: none
   opacity: 0.3
   font-weight: bold
   cursor: pointer
@@ -98,6 +99,7 @@ export default {
   display: block
   height: 32px
   padding: 0.25em 0
+  outline: none
   opacity: 0.3
   cursor: pointer
   &:hover, &:focus
