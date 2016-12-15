@@ -28,7 +28,10 @@ npm run build
 - subheading
 - text (contenteditable attribute with [MediumEditor](https://github.com/yabwe/medium-editor)
 - image with alt attribute
-- video
+- video (YouTube, Vimeo)
+- teaser (headline + text + image + link)
+- gallery
+- GitHub Gist
 
 ## Adding a new block
 1. Create a .vue file under `src/components/blocks` starting with a capital letter and ending with `Block.vue`
@@ -69,7 +72,7 @@ export default {
 <style></style>
 ````
 
-The `<slot />` is the place where the controls for adding new blocks is inserted.
+At the position of `<slot />` the controls for adding new blocks are inserted.
 
 ## License: MIT
 Copyright Oliver Liebsch, http://oliver-liebsch.de
