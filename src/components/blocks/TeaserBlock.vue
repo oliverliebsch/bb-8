@@ -4,10 +4,10 @@
       <input v-model="block.fields.title" class="bb8-form-control bb8-block-teaser-title" placeholder="Title" required>
       <div class="bb8-block-teaser-content">
         <div class="bb8-block-teaser-left">
-          <input name="image[file]" type="file" accept="image/*" :id="'bb8-file-' + index" class="bb8-block-teaser-image-fileinput" @change="updateImage($event)">
+          <input tabindex="-1" name="image[file]" type="file" accept="image/*" :id="'bb8-file-' + index" class="bb8-block-teaser-image-fileinput" @change="updateImage($event)">
 
           <div class="bb8-block-teaser-image-label-wrapper" v-show="block.fields.image == ''">
-            <label :for="'bb8-file-' + index" class="bb8-block-teaser-image-label" >
+            <label role="button" tabindex="0" :for="'bb8-file-' + index" class="bb8-block-teaser-image-label" @keypress.enter="$event.target.click()">
               <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
             </label>
           </div>
@@ -104,12 +104,14 @@ export default {
   padding: 0.5em 0.5em 0.2em
   border: 2px dashed lightgray
   border-radius: 8px
+  outline: none
   text-align: center
   line-height: 1
   color: lightgray
   cursor: pointer
   transition: all 0.2s ease-in
-  &:hover
+  &:hover,
+  &:focus
     border-color: black
     color: black
   .icon
@@ -128,12 +130,14 @@ export default {
   height: 24px
   padding: 2px
   border-radius: 50%
+  outline: none
   background-color: black
   line-height: 1
   color: white
   cursor: pointer
   transition: transform 0.2s ease-in
-  &:hover
+  &:hover,
+  &:focus
     transform: rotate(90deg)
   .icon
     display: table-cell

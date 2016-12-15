@@ -1,17 +1,17 @@
 <template>
   <div class="bb8-block">
-    <input name="image[file]" type="file" accept="image/*" :required="block.fields.image == ''" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
+    <input tabindex="-1" name="image[file]" type="file" accept="image/*" :required="block.fields.image == ''" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
 
     <div class="bb8-block-image-wrapper" v-if="block.fields.image != ''">
       <div :class="['bb8-block-image-preview-wrapper', fields.alignment]">
         <img :src="block.fields.image" class="bb8-block-image-preview">
       </div>
-      <div :class="['bb8-block-image-alignment', fields.alignment]">
-        <svg class="icon icon-image-left" @click="setAlignment('left')"><use xlink:href="#icon-image-left"></use></svg>
-        <svg class="icon icon-image-center" @click="setAlignment('center')"><use xlink:href="#icon-image-center"></use></svg>
-        <svg class="icon icon-image-right" @click="setAlignment('right')"><use xlink:href="#icon-image-right"></use></svg>
+      <div :class="['bb8-block-image-alignment', fields.alignment]" v-if="!disallowAllignment">
+        <svg role="button" tabindex="0" class="icon icon-image-left" @click="setAlignment('left')" @keypress.enter="setAlignment('left')"><use xlink:href="#icon-image-left"></use></svg>
+        <svg role="button" tabindex="0" class="icon icon-image-center" @click="setAlignment('center')" @keypress.enter="setAlignment('center')"><use xlink:href="#icon-image-center"></use></svg>
+        <svg role="button" tabindex="0" class="icon icon-image-right" @click="setAlignment('right')" @keypress.enter="setAlignment('right')"><use xlink:href="#icon-image-right"></use></svg>
       </div>
-      <a class="bb8-block-image-remove" @click="removeBlock()">
+      <a role="button" tabindex="0" class="bb8-block-image-remove" @click="removeBlock()" @keypress.enter="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -29,6 +29,8 @@ export default {
   name: 'single-image'
 
   mixins: [blockMixin, uploadMixin]
+
+  props: ['disallowAllignment']
 
   data: -> {
     fields: {
@@ -76,7 +78,8 @@ export default {
 .bb8-block-image-wrapper
   position: relative
   margin: 0 0.25em 0.5em
-  &:hover
+  &:hover,
+  &:focus
     .bb8-block-image-alignment
       opacity: 1
 
@@ -99,6 +102,7 @@ export default {
   left: 0
   padding: 0.5em 0 0.25em
   opacity: 0
+  outline: none
   background: rgba(0, 0, 0, 0.5)
   font-size: 1.6em
   text-align: center
@@ -107,9 +111,11 @@ export default {
   transition: opacity 0.2s ease-in
   .icon
     vertical-align: middle
+    outline: none
     transition: all 0.2s ease-in
     cursor: pointer
-    &:hover
+    &:hover,
+    &:focus
       font-size: 1.6em
   &.center
     .icon-image-center
@@ -130,12 +136,14 @@ export default {
   height: 24px
   padding: 2px
   border-radius: 50%
+  outline: none
   background-color: black
   line-height: 1
   color: white
   cursor: pointer
   transition: transform 0.2s ease-in
-  &:hover
+  &:hover,
+  &:focus
     transform: rotate(90deg)
   .icon
     display: table-cell

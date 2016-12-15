@@ -43,6 +43,10 @@
           <title>teaser-block</title>
           <path class="path1" d="M17.041 13.011v2.639h11.608v-2.639h-11.608zM17.041 17.72v2.639h11.608v-2.639h-11.608zM3.35 7.040v4.009h25.299v-4.009h-25.299zM3.351 13.010v7.349h11.608v-7.349h-11.608zM4.235 19.4l2.426-3.121 1.791 2.111 2.507-3.151 3.122 4.161zM3.35 22.32h25.299v2.639h-25.299v-2.639z"></path>
         </symbol>
+        <symbol id="icon-gallery-block" viewBox="0 0 24 24">
+          <title>gallery-block</title>
+          <path class="path1" d="M2.016 6h1.969v14.016h14.016v1.969h-14.016c-1.078 0-1.969-0.891-1.969-1.969v-14.016zM11.016 12l-3 3.984h12l-4.031-4.969-2.953 3.703zM21.984 15.984c0 1.078-0.891 2.016-1.969 2.016h-12c-1.078 0-2.016-0.938-2.016-2.016v-12c0-1.078 0.938-1.969 2.016-1.969h12c1.078 0 1.969 0.891 1.969 1.969v12z"></path>
+        </symbol>
         <symbol id="icon-remove" viewBox="0 0 24 24">
           <title>remove</title>
           <path class="path1" d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
@@ -71,13 +75,14 @@ import TextBlock from './components/blocks/TextBlock.vue'
 import ImageBlock from './components/blocks/ImageBlock.vue'
 import VideoBlock from './components/blocks/VideoBlock.vue'
 import TeaserBlock from './components/blocks/TeaserBlock.vue'
+import GalleryBlock from './components/blocks/GalleryBlock.vue'
 
 export default {
   name: 'bb8'
 
   data: -> {
     config: {}
-    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser']
+    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser', 'gallery']
     blocks: []
     ids: []
   }
@@ -92,6 +97,7 @@ export default {
     ImageBlock
     VideoBlock
     TeaserBlock
+    GalleryBlock
   }
 
   computed: {
@@ -114,14 +120,14 @@ export default {
     this.blocks = blocks
 
   methods: {
-    createBlockId: ->
+    generateBlockId: ->
       idsLength = this.ids.length
       if idsLength then this.ids[idsLength - 1] + 1 else 1
 
     addBlock: (newBlock) ->
       this.blocks.splice(newBlock.index + 1, 0, {
         blocktype: newBlock.blocktype
-        id: this.createBlockId()
+        id: this.generateBlockId()
         fields: {}
       })
 
