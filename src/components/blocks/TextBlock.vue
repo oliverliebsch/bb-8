@@ -1,7 +1,7 @@
 <template>
   <div class="bb8-block">
     <div @blur="updateText($event)" @keydown.delete="removeBlock($event)" v-html="content" class="bb8-form-control bb8-block-text" required></div>
-    <controls :index="index" :block-types="blockTypes"></controls>
+    <slot></slot>
   </div>
 </template>
 
@@ -9,7 +9,6 @@
 MediumEditor = require('medium-editor')
 require('medium-editor/dist/css/medium-editor.css')
 
-import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
 
 export default {

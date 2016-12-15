@@ -17,12 +17,11 @@
     </div>
 
     <input v-model="block.fields.alt" class="bb8-form-control bb8-block-image-alt" placeholder="Image caption" required>
-    <controls :index="index" :block-types="blockTypes"></controls>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="coffee">
-import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
 import uploadMixin from './../UploadMixin.vue'
 

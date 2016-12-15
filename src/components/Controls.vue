@@ -14,8 +14,6 @@
 </template>
 
 <script lang="coffee">
-import eventBus from './../EventBus.vue'
-
 export default {
   name: 'controls'
 
@@ -46,7 +44,7 @@ export default {
       this.showControls = false if this.$el != e.target && !this.isChildOf(this.$el, e.target)
 
     addBlock: (type) ->
-      eventBus.$emit('bb8-add-block', { blocktype: type, index: this.index })
+      this.$emit('add-block', { blocktype: type, index: this.index })
       this.showControls = false
   }
 }

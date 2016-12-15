@@ -55,14 +55,15 @@
     </svg>
     <textarea class="bb8-output" :name="config.name" v-model="output"></textarea>
     <div class="bb8-default-controls">
-      <controls :index="-1" :block-types="blockTypes"></controls>
+      <controls :index="-1" :block-types="blockTypes" v-on:add-block="addBlock"></controls>
     </div>
-    <component :index="index" :block="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-on:remove-block="removeBlock" v-for="(block, index) in blocks"></component>
+    <component :index="index" :block="block" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-on:remove-block="removeBlock" v-for="(block, index) in blocks">
+      <controls :index="index" :block-types="blockTypes" v-on:add-block="addBlock"></controls>
+    </component>
   </div>
 </template>
 
 <script lang="coffee">
-import eventBus from './EventBus.vue'
 import Controls from './components/Controls.vue'
 import HeadingBlock from './components/blocks/HeadingBlock.vue'
 import SubheadingBlock from './components/blocks/SubheadingBlock.vue'
@@ -111,8 +112,6 @@ export default {
     block.id = blocks.indexOf(block) + 1 for block in blocks
 
     this.blocks = blocks
-
-    eventBus.$on('bb8-add-block', this.addBlock)
 
   methods: {
     createBlockId: ->

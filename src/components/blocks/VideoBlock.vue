@@ -10,12 +10,11 @@
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
-    <controls :index="index" :block-types="blockTypes"></controls>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="coffee">
-import eventBus from './../../EventBus.vue'
 import blockMixin from './../BlockMixin.vue'
 
 export default {
