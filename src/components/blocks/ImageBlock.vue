@@ -2,15 +2,6 @@
   <div class="bb8-block">
     <input name="image[file]" type="file" accept="image/*" :required="block.fields.image == ''" :id="'bb8-file-' + index" class="bb8-block-image-fileinput" @change="updateImage($event)">
 
-    <div class="bb8-block-image-label-wrapper" v-show="block.fields.image == ''">
-      <label :for="'bb8-file-' + index" class="bb8-block-image-label" >
-        <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
-      </label>
-      <a class="bb8-block-image-remove" @click="removeBlock()">
-        <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
-      </a>
-    </div>
-
     <div class="bb8-block-image-wrapper" v-if="block.fields.image != ''">
       <div :class="['bb8-block-image-preview-wrapper', fields.alignment]">
         <img :src="block.fields.image" class="bb8-block-image-preview">
@@ -20,7 +11,7 @@
         <svg class="icon icon-image-center" @click="setAlignment('center')"><use xlink:href="#icon-image-center"></use></svg>
         <svg class="icon icon-image-right" @click="setAlignment('right')"><use xlink:href="#icon-image-right"></use></svg>
       </div>
-      <a class="bb8-block-image-remove" @click="removeImage()">
+      <a class="bb8-block-image-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -49,20 +40,26 @@ export default {
   }
 
   mounted: ->
+    vm = this
+
     # TODO: brrr…
-    this.$el.getElementsByTagName('label')[0].click() if this.block.fields.image.length <= 0
+    this.$el.getElementsByTagName('input')[0].click() if this.block.fields.image.length <= 0
+
+    # TODO
+    document.body.onfocus = ->
+      setTimeout(->
+        vm.onFileInputCancel()
+      , 100)
 
   methods: {
+    onFileInputCancel: ->
+      this.removeBlock() if this.block.fields.image.length <= 0
+
     updateImage: (event) ->
       this.uploadImage(event)
 
     setAlignment: (alignment) ->
       this.fields.alignment = alignment
-
-    removeImage: ->
-      this.block.fields.image = ''
-      # TODO: ugly
-      document.getElementById('bb8-file-' + this.index).value = ''
 
     removeBlock: ->
       eventBus.$emit('bb8-remove-block', this.index)
@@ -76,33 +73,6 @@ export default {
   position: absolute
   z-index: -1
   opacity: 0
-  &:focus
-    .bb8-block-image-label
-      border-color: black
-      color: black
-
-.bb8-block-image-label-wrapper
-  position: relative
-  margin: 0 0.25em 0.5em
-  .bb8-block-image-remove
-    top: -12px
-    right: -12px
-
-.bb8-block-image-label
-  display: block
-  padding: 0.5em 0.5em 0.2em
-  border: 2px dashed lightgray
-  border-radius: 8px
-  text-align: center
-  line-height: 1
-  color: lightgray
-  cursor: pointer
-  transition: all 0.2s ease-in
-  &:hover
-    border-color: black
-    color: black
-  .icon
-    font-size: 1.4em
 
 .bb8-block-image-wrapper
   position: relative
