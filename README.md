@@ -32,10 +32,44 @@ npm run build
 
 ## Adding a new block
 1. Create a .vue file under `src/components/blocks` starting with a capital letter and ending with `Block.vue`
-2. See the existing blocks for reference on how to define a block
+2. See the code bellow and existing blocks for further guidance
 3. Import the block in `Bb8.vue` and reference it under `components`
 4. Add an .svg with the name `yourblockname-block`
 4. Add your new block to the `blockTypes` config option, when creating a new BB8 instance
+
+````
+<template>
+  <div class="bb8-block">
+    …
+    <slot></slot>
+  </div>
+</template>
+
+<script lang="coffee">
+import blockMixin from './../BlockMixin.vue'
+
+export default {
+  name: 'yourblockname'
+
+  mixins: [blockMixin]
+
+  data: -> {
+    fields: {
+      …
+    }
+  }
+
+  methods: {
+    removeBlock: (event) ->
+      this.$emit('remove-block', this.index)
+  }
+}
+</script>
+
+<style></style>
+````
+
+The `<slot />` is the place where the controls for adding new blocks is inserted.
 
 ## License: MIT
 Copyright Oliver Liebsch, http://oliver-liebsch.de
