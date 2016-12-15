@@ -1,5 +1,5 @@
 <template>
-  <div class="bb8-controls">
+  <div class="bb8-controls" v-if="blockTypes && blockTypes.length > 0">
     <a role="button" tabindex="0" @keyup.enter="toggleControls()" @click="toggleControls()" :class="['bb8-controls-toggle', { 'is-active': showControls }]">
       <svg class="icon icon-add-block"><use xlink:href="#icon-add-block"></use></svg>
     </a>

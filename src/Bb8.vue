@@ -57,7 +57,7 @@
     <div class="bb8-default-controls">
       <controls :index="-1" :block-types="blockTypes"></controls>
     </div>
-    <component :index="index" :block="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-for="(block, index) in blocks"></component>
+    <component :index="index" :block="block" :block-types="blockTypes" :config="config" :is="block.blocktype + '-block'" :key="block.id" v-on:remove-block="removeBlock" v-for="(block, index) in blocks"></component>
   </div>
 </template>
 
@@ -113,7 +113,6 @@ export default {
     this.blocks = blocks
 
     eventBus.$on('bb8-add-block', this.addBlock)
-    eventBus.$on('bb8-remove-block', this.removeBlock)
 
   methods: {
     createBlockId: ->

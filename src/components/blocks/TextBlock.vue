@@ -53,7 +53,7 @@ export default {
 
     removeBlock: (event) ->
       return if event.target.innerText.replace(/\s+/g,"").length > 0
-      eventBus.$emit('bb8-remove-block', this.index)
+      this.$emit('remove-block', this.index)
   }
 }
 </script>

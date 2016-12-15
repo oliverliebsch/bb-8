@@ -62,7 +62,7 @@ export default {
       this.fields.alignment = alignment
 
     removeBlock: ->
-      eventBus.$emit('bb8-remove-block', this.index)
+      this.$emit('remove-block', this.index)
   }
 }
 </script>
