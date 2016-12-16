@@ -175,6 +175,7 @@ export default {
 
 .bb8-block
   position: relative
+  padding-left: 32px
   &::after
     display: block
     content: ""
