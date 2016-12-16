@@ -32,6 +32,7 @@ npm run build
 - teaser (headline + text + image + link)
 - gallery
 - GitHub Gist
+- Twitter tweet
 
 ## Adding a new block
 1. Create a .vue file under `src/components/blocks` starting with a capital letter and ending with `Block.vue`
