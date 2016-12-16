@@ -1,4 +1,4 @@
-import Vue from 'vue'
+//import Vue from 'vue'
 import Bb8 from './Bb8.vue'
 
 new Vue({
