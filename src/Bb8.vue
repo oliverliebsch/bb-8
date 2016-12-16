@@ -76,13 +76,14 @@ import ImageBlock from './components/blocks/ImageBlock.vue'
 import VideoBlock from './components/blocks/VideoBlock.vue'
 import TeaserBlock from './components/blocks/TeaserBlock.vue'
 import GalleryBlock from './components/blocks/GalleryBlock.vue'
+import GistBlock from './components/blocks/GistBlock.vue'
 
 export default {
   name: 'bb8'
 
   data: -> {
     config: {}
-    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser', 'gallery']
+    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser', 'gallery', 'gist']
     blocks: []
     ids: []
   }
@@ -98,6 +99,7 @@ export default {
     VideoBlock
     TeaserBlock
     GalleryBlock
+    GistBlock
   }
 
   computed: {
