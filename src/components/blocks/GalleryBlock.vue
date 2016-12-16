@@ -60,7 +60,7 @@ export default {
 <style lang='sass?indentedSyntax=true'>
 .bb8-block-gallery
   margin: 0
-  padding: 0 0.25em
+  padding: 0
   list-style-type: none
   &::after
     display: block
@@ -70,7 +70,9 @@ export default {
 .bb8-block-gallery-item
   float: left
   width: 25%
-  padding: 0.5em
+  padding: 0 1em 1em 0
+  &:nth-child(4n+1)
+    clear: left
   .bb8-block-image-wrapper
     margin: 0
 

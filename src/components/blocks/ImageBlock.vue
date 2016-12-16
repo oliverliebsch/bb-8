@@ -77,7 +77,7 @@ export default {
 
 .bb8-block-image-wrapper
   position: relative
-  margin: 0 0.25em 0.5em
+  margin: 0 0 0.5em
   &:hover,
   &:focus
     .bb8-block-image-alignment

@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube or Vimeo video link and press Enter" v-show="block.fields.id == ''" required>
+    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube or Vimeo video link and press enter" v-show="block.fields.id == ''" required>
     <div class="bb8-block-video-preview" v-if="block.fields.id != ''">
       <div class="bb8-block-video-wrapper">
         <iframe class="bb8-block-video-iframe" v-if="block.fields.plattform == 'youtube'" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
@@ -68,7 +68,7 @@ export default {
 <style lang='sass?indentedSyntax=true'>
 .bb8-block-video-preview
   position: relative
-  margin: 0 0.25em 0.5em
+  margin: 0 0 0.5em
 
 .bb8-block-video-wrapper
   position: relative

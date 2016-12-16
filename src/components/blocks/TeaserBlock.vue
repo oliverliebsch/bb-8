@@ -75,7 +75,6 @@ export default {
   margin-bottom: 0.5em
 
 .bb8-block-teaser-content
-  padding: 0 0.25em
   &::after
     display: block
     content: ""
@@ -97,7 +96,6 @@ export default {
 
 .bb8-block-teaser-image-label-wrapper
   position: relative
-  margin: 0 0.25em 0.5em
 
 .bb8-block-teaser-image-label
   display: block

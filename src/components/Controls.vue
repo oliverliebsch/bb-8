@@ -53,7 +53,7 @@ export default {
 <style lang='sass?indentedSyntax=true'>
 .bb8-controls
   height: 32px
-  padding: 0 0.25em
+  padding: 0
   font-size: 1.4em
   line-height: 1
   &::after

@@ -43,7 +43,7 @@ export default {
       previewContainer.innerHTML = ''
       previewContainer.appendChild(gistFrame)
 
-      gistFrameHTML = '<html><body style="margin:0;"><script src="' + url + '.js"></sc'+'ript></body></html>'
+      gistFrameHTML = '<html><head><base target="_parent"></head><body style="margin:0;"><script src="' + url + '.js"></sc'+'ript></body></html>'
       gistFrameDoc = gistFrame.document
 
       if gistFrame.contentDocument
