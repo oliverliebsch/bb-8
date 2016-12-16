@@ -16,7 +16,7 @@
             <div :class="['bb8-block-teaser-image-preview-wrapper', fields.alignment]">
               <img :src="block.fields.image" class="bb8-block-image-preview">
             </div>
-            <a class="bb8-block-teaser-image-remove" @click="removeImage()">
+            <a class="bb8-block-remove" @click="removeImage()">
               <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
             </a>
           </div>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <a class="bb8-block-image-remove" @click="removeBlock()">
+      <a class="bb8-block-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -118,29 +118,6 @@ export default {
 .bb8-block-teaser-image-wrapper
   position: relative
   margin: 0 0.25em 0.5em
-
-.bb8-block-teaser-image-remove
-  display: table
-  position: absolute
-  top: -12px
-  right: -12px
-  width: 24px
-  height: 24px
-  padding: 2px
-  border-radius: 50%
-  outline: none
-  background-color: black
-  line-height: 1
-  color: white
-  cursor: pointer
-  transition: transform 0.2s ease-in
-  &:hover,
-  &:focus
-    transform: rotate(90deg)
-  .icon
-    display: table-cell
-    width: 100%
-    height: 100%
 
 .bb8-block-teaser-right
   float: right

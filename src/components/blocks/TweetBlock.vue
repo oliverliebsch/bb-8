@@ -3,7 +3,7 @@
     <input :value="block.fields.id" @keydown.prevent.enter="loadTweet($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a tweet ID and press enter" v-show="block.fields.id == ''" required>
     <div class="bb8-block-tweet-wrapper">
       <div class="bb8-block-tweet"></div>
-      <a class="bb8-block-video-remove" @click="removeBlock()">
+      <a class="bb8-block-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -74,25 +74,4 @@ export default {
 <style lang='sass?indentedSyntax=true'>
 .bb8-block-tweet-wrapper
   position: relative
-
-.bb8-block-video-remove
-  display: table
-  position: absolute
-  top: -12px
-  right: -12px
-  width: 24px
-  height: 24px
-  padding: 2px
-  border-radius: 50%
-  background-color: black
-  line-height: 1
-  color: white
-  cursor: pointer
-  transition: transform 0.2s ease-in
-  &:hover
-    transform: rotate(90deg)
-  .icon
-    display: table-cell
-    width: 100%
-    height: 100%
 </style>

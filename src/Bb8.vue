@@ -176,6 +176,29 @@ export default {
     content: ""
     clear: both
 
+.bb8-block-remove
+  display: table
+  position: absolute
+  top: -12px
+  right: -12px
+  width: 24px
+  height: 24px
+  padding: 2px
+  border-radius: 50%
+  outline: none
+  background-color: black
+  line-height: 1
+  color: white
+  cursor: pointer
+  transition: transform 0.2s ease-in
+  &:hover,
+  &:focus
+    transform: rotate(90deg)
+  .icon
+    display: table-cell
+    width: 100%
+    height: 100%
+
 .bb8-form-control
   display: block
   width: 100%

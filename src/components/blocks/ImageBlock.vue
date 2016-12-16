@@ -11,7 +11,7 @@
         <svg role="button" tabindex="0" class="icon icon-image-center" @click="setAlignment('center')" @keypress.enter="setAlignment('center')"><use xlink:href="#icon-image-center"></use></svg>
         <svg role="button" tabindex="0" class="icon icon-image-right" @click="setAlignment('right')" @keypress.enter="setAlignment('right')"><use xlink:href="#icon-image-right"></use></svg>
       </div>
-      <a role="button" tabindex="0" class="bb8-block-image-remove" @click="removeBlock()" @keypress.enter="removeBlock()">
+      <a role="button" tabindex="0" class="bb8-block-remove" @click="removeBlock()" @keypress.enter="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -126,29 +126,6 @@ export default {
   &.right
     .icon-image-right
       font-size: 1.6em
-
-.bb8-block-image-remove
-  display: table
-  position: absolute
-  top: -12px
-  right: -12px
-  width: 24px
-  height: 24px
-  padding: 2px
-  border-radius: 50%
-  outline: none
-  background-color: black
-  line-height: 1
-  color: white
-  cursor: pointer
-  transition: transform 0.2s ease-in
-  &:hover,
-  &:focus
-    transform: rotate(90deg)
-  .icon
-    display: table-cell
-    width: 100%
-    height: 100%
 
 .bb8-block-image-alt
   appearance: none

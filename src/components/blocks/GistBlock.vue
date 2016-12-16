@@ -3,7 +3,7 @@
     <input :value="block.fields.url" @keydown.prevent.enter="loadGist($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a GitHub Gist url and press enter" v-show="block.fields.url == ''" required>
     <div class="bb8-block-gist-preview-wrapper" v-show="block.fields.url != ''">
       <div class="bb8-block-gist-preview"></div>
-      <a role="button" tabindex="0" class="bb8-block-gist-remove" @click="removeBlock()" @keypress.enter="removeBlock()">
+      <a role="button" tabindex="0" class="bb8-block-remove" @click="removeBlock()" @keypress.enter="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
       </a>
     </div>
@@ -69,27 +69,4 @@ export default {
   width: 100%
   height: 240px
   border: none
-
-.bb8-block-gist-remove
-  display: table
-  position: absolute
-  top: -12px
-  right: -12px
-  width: 24px
-  height: 24px
-  padding: 2px
-  border-radius: 50%
-  outline: none
-  background-color: black
-  line-height: 1
-  color: white
-  cursor: pointer
-  transition: transform 0.2s ease-in
-  &:hover,
-  &:focus
-    transform: rotate(90deg)
-  .icon
-    display: table-cell
-    width: 100%
-    height: 100%
 </style>
