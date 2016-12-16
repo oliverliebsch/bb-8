@@ -1,6 +1,6 @@
 # bb-8
 
-> A simple and intuitive content editor
+> Converts a textarea into a simple and intuitive content editor
 
 ![bb-8](http://oliver-liebsch.de/bb8.gif)
 
