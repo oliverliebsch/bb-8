@@ -2,7 +2,7 @@
 
 > Converts a textarea into a simple and intuitive content editor
 
-**Demo:** (See the editor in action)[https://oliverliebsch.github.io/bb-8/]
+**Demo:** [See the editor in action](https://oliverliebsch.github.io/bb-8/)
 
 ![bb-8](http://oliver-liebsch.de/bb8.gif)
 
