@@ -10,9 +10,9 @@
 - minimum css
 - based on vue.js
 
-## Build setup
-
-``` bash
+## Installation
+```
+bash
 # install dependencies
 npm install
 
@@ -22,6 +22,43 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+
+## Getting started
+Usually you want to use bb-8 on a textarea in an existing form. But that is not a must.
+
+1. Add vue.js to your page. E.g. from a cdn:
+`<script src="//unpkg.com/vue@2.1.6/dist/vue.js"></script>`
+
+2. Add the bb-8 JavaScript build to your page somewhere after vue.js. E.g.:
+`<script src="/dist/bb8.js"></script>`
+
+3. Add the id `bb8` on a tag within your markup, e.g. on a form tag:
+```
+<form id="bb8">
+  …
+</form>
+```
+
+4. Add the bb8 main component inside that element:
+```
+<form id="bb8">
+  <bb8 bb8-config='[]' bb8-initial-data='[]'></bb8>
+</form>
+```
+
+5. Add your configuration (see bellow) and initial data.
+
+6. Adjust the stylings.
+
+## Configuration
+`bb8-config`:
+- name (required, string): name of the textarea the output is written to
+- blockTypes (optional, array): the blocks you want to use, `["heading", "subheading", …]``
+
+If you use the built-in image, teaser or gallery block:
+- imageApi (required, string): your endpoint for uploading images
+- httpMethod (required, string): GET, POST…
+- apiHeaders (optional, object): if you want to set custom headers for the upload request
 
 ## Built-in blocks
 - heading
