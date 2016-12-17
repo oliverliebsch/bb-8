@@ -27,7 +27,7 @@ npm run build
 Usually you want to use bb-8 on a textarea in an existing form. But that is not a must.
 
 1. Add **vue.js** to your page. For example from a cdn: `<script src="//unpkg.com/vue@2.1.6/dist/vue.js"></script>`
-2. Add the **bb-8 build** to your page somewhere after vue.js. For example: `<script src="/dist/bb8.js"></script>`
+2. Add the **bb-8 build** to your page somewhere after vue.js. For example: `<script src="bb8.js"></script>`
 3. Add the **ID** `bb8` on a tag within your markup, for instance, on a form tag: `<form id="bb8">…</form>`
 4. Add the bb8 **main component** inside that element: `<form id="bb8"><bb8 bb8-config='[]' bb8-initial-data='[]'></bb8></form>`
 5. Add your **configuration** (see bellow) and **initial data**.
@@ -39,7 +39,7 @@ Usually you want to use bb-8 on a textarea in an existing form. But that is not 
   <input type="submit" value="submit" id="submit">
 </form>
 <script src="//unpkg.com/vue@2.1.6/dist/vue.js"></script>
-<script src="/dist/bb8.js"></script>
+<script src="bb8.js"></script>
 ```
 
 ## Configuration
