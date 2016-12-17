@@ -13,9 +13,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-
-        }
+        options: {}
       },
       {
         test: /\.js$/,
