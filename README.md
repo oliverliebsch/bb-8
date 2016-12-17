@@ -33,6 +33,15 @@ Usually you want to use bb-8 on a textarea in an existing form. But that is not 
 5. Add your **configuration** (see bellow) and **initial data**.
 6. Adjust the **stylings**.
 
+```
+<form id="bb8">
+  <bb8 bb8-config='[{"name":"content","blockTypes":["heading","text","image","video","tweet"],"imageApi":"/image.json","httpMethod":"GET"}]' bb8-initial-data='[]'></bb8>
+  <input type="submit" value="submit" id="submit">
+</form>
+<script src="//unpkg.com/vue@2.1.6/dist/vue.js"></script>
+<script src="/dist/bb8.js"></script>
+```
+
 ## Configuration
 `bb8-config`:
 - **name** (required, string): name of the textarea the output is written to
