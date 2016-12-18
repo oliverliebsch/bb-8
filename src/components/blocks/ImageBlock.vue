@@ -63,6 +63,7 @@ export default {
       this.fields.alignment = alignment
 
     removeBlock: ->
+      console.log "remove block"
       this.$emit('remove-block', this.index)
   }
 }
