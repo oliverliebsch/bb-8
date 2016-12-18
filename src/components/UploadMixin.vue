@@ -27,7 +27,9 @@ export default {
           if this.status == 200
             resp = JSON.parse(this.response)
             console.log resp.file
+            console.log vm
             vm.block.fields.image = resp.file.url
+            console.log vm
           else
             vm.block.fields.image = ''
 
