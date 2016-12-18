@@ -63,7 +63,7 @@ export default {
     onFileInputCancel: ->
       console.log this.block.fields.image.length
       console.log this.block.fields.image
-      console.log this.$el.getElementsByTagName('input')[0]
+      console.log this.$el.getElementsByTagName('input')[0].files
       this.removeBlock() if this.block.fields.image.length <= 0
 
     updateImage: (event) ->
