@@ -22,14 +22,9 @@ export default {
           xhr.setRequestHeader(header, value)
 
         xhr.onload = ->
-          console.log "onload"
-          console.log this.status
           if this.status == 200
             resp = JSON.parse(this.response)
-            console.log resp.file
-            console.log vm
             vm.block.fields.image = resp.file.url
-            console.log vm
           else
             vm.block.fields.image = ''
 
