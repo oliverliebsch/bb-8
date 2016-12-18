@@ -62,6 +62,8 @@ export default {
   margin: 0
   padding: 0
   list-style-type: none
+  .bb8-block
+    padding-left: 0
   &::after
     display: block
     content: ""
