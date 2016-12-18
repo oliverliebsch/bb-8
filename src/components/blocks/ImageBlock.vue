@@ -47,13 +47,22 @@ export default {
     this.$el.getElementsByTagName('input')[0].click() if this.block.fields.image.length <= 0
 
     # TODO
-    document.body.onfocus = ->
+    window.addEventListener('focus', (event) ->
+      console.log "win focus"
       setTimeout(->
         vm.onFileInputCancel()
       , 100)
+    )
+
+    # document.body.onfocus = ->
+    #   setTimeout(->
+    #     vm.onFileInputCancel()
+    #   , 100)
 
   methods: {
     onFileInputCancel: ->
+      console.log this.block.fields.image.length
+      console.log this.block.fields.image
       this.removeBlock() if this.block.fields.image.length <= 0
 
     updateImage: (event) ->
