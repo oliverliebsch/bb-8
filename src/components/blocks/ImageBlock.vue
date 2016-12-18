@@ -63,6 +63,7 @@ export default {
     onFileInputCancel: ->
       console.log this.block.fields.image.length
       console.log this.block.fields.image
+      console.log this.$el.getElementsByTagName('input')[0]
       this.removeBlock() if this.block.fields.image.length <= 0
 
     updateImage: (event) ->
@@ -72,6 +73,7 @@ export default {
       this.fields.alignment = alignment
 
     removeBlock: ->
+      debugger
       console.log "remove block"
       this.$emit('remove-block', this.index)
   }
