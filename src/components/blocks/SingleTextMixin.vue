@@ -20,7 +20,7 @@ export default {
   }
 
   mounted: ->
-    this.$el.firstChild.focus() if this.block.fields.content.length <= 0
+    this.$el.querySelector('.bb8-form-control').focus() if this.block.fields.content.length <= 0
 
   methods: {
     removeBlock: (event) ->

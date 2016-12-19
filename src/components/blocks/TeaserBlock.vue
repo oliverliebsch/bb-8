@@ -61,7 +61,7 @@ export default {
     removeImage: ->
       this.block.fields.image = ''
       # TODO: ugly
-      document.getElementById('bb8-file-' + this.index).value = ''
+      this.$el.querySelector('.bb8-block-teaser-image-fileinput').value = ''
 
     removeBlock: (event, checkUrl = false) ->
       return if checkUrl && event.target.value.length >= 0

@@ -39,7 +39,7 @@ export default {
       }
     })
 
-    this.$el.firstChild.focus() if this.block.fields.content.length <= 0
+    this.$el.querySelector('.bb8-block-text').focus() if this.block.fields.content.length <= 0
 
     # that = this
     # editor.subscribe('editableInput', (event, editable) ->
