@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-gallery
   margin: 0
   padding: 0

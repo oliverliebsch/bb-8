@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-teaser-title
   margin-bottom: 0.5em
 

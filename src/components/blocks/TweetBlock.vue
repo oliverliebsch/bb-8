@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-tweet-wrapper
   position: relative
 </style>

@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -13,7 +14,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {}
+        options: {
+          loaders: {
+            sass: ExtractTextPlugin.extract({
+              loader: ['css-loader', 'postcss-loader', 'sass-loader?indentedSyntax'],
+              fallbackLoader: 'vue-style-loader'
+            })
+          }
+        }
       },
       {
         test: /\.js$/,
@@ -29,7 +37,10 @@ module.exports = {
       },
       {
         test: /\.(css|sass)$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        loader: ExtractTextPlugin.extract({
+                  loader: ['css-loader', 'postcss-loader', 'sass-loader'],
+                  fallbackLoader: 'style-loader'
+                })
       },
       {
         test: /\.coffee$/,
@@ -37,6 +48,12 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'bb8.css',
+      allChunks: true
+    })
+  ],
   devServer: {
     historyApiFallback: true,
     noInfo: true

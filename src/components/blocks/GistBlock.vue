@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-gist-preview-wrapper
   position: relative
 
