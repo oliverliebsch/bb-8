@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-controls
   position: relative
   left: -32px

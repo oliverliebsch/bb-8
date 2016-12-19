@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-video-preview
   position: relative
   margin: 0 0 0.5em

@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-image-fileinput
   overflow: hidden
   position: absolute
