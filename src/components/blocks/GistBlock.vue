@@ -34,6 +34,7 @@ export default {
 
     loadGist: (event) ->
       url = event.target.value
+      return if url == ''
       this.block.fields.url = url
 
       gistFrame = document.createElement('iframe')

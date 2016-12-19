@@ -36,6 +36,7 @@ export default {
   methods: {
     loadVideo: (event) ->
       url = event.target.value
+      return if url == ''
       this.block.fields.url = url
 
       id = this.getVideoId(url)

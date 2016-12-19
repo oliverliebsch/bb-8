@@ -32,6 +32,7 @@ export default {
     loadTweet: (event) ->
       vm = this
       id = event.target.value
+      return if id == ''
       this.block.fields.id = id
 
       window.twttr = this.loadTwitterWidgetJS(->
