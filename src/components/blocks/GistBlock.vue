@@ -15,7 +15,7 @@
 import blockMixin from './../BlockMixin.vue'
 
 export default {
-  name: 'yourblockname'
+  name: 'gist'
 
   mixins: [blockMixin]
 
