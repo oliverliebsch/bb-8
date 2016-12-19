@@ -149,7 +149,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .icon
   display: inline-block
   width: 1em

@@ -46,17 +46,12 @@ export default {
     # TODO: brrr…
     this.$el.getElementsByTagName('input')[0].click() if this.block.fields.image.length <= 0
 
-    # TODO
+    # TODO: Is there a better solution to handle cancelling a file input dialog?
     window.addEventListener('focus', (event) ->
       setTimeout(->
         vm.onFileInputCancel()
       , 100)
     )
-
-    # document.body.onfocus = ->
-    #   setTimeout(->
-    #     vm.onFileInputCancel()
-    #   , 100)
 
   methods: {
     onFileInputCancel: ->
@@ -74,7 +69,7 @@ export default {
 }
 </script>
 
-<style lang='sass?indentedSyntax=true'>
+<style lang='sass'>
 .bb8-block-image-fileinput
   overflow: hidden
   position: absolute

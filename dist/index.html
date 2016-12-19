@@ -5,6 +5,7 @@
     <meta content="width=device-width" name="viewport">
     <title>bb-8</title>
     <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="bb8.css">
     <style>
       body {
         background-color: #f8f8f8;
@@ -28,6 +29,21 @@
         color: #999;
         cursor: pointer
       }
+      /* Custom Editor Styles */
+      .bb8-form-control {
+        border: none;
+        outline: 0;
+      }
+      .bb8-block-heading {
+        font-size: 2em;
+        font-weight: bold;
+        color: rgba(255, 82, 82, 0.87);
+      }
+      .bb8-block-subheading,
+      .bb8-block-teaser-title {
+        font-size: 1.4em;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -38,21 +54,5 @@
     </form>
     <script src="//unpkg.com/vue@2.1.6/dist/vue.js"></script>
     <script src="bb8.js"></script>
-    <style>
-    .bb8-form-control {
-      border: none;
-      outline: 0;
-    }
-    .bb8-block-heading {
-      font-size: 2em;
-      font-weight: bold;
-      color: rgba(255, 82, 82, 0.87);
-    }
-    .bb8-block-subheading,
-    .bb8-block-teaser-title {
-      font-size: 1.4em;
-      font-weight: bold;
-    }
-  </style>
   </body>
 </html>
