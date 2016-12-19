@@ -56,7 +56,8 @@ export default {
       gistFrameDoc.writeln(gistFrameHTML)
       gistFrameDoc.close()
 
-    removeBlock: (event) ->
+    removeBlock: (event, checkUrl = false) ->
+      return if checkUrl && event.target.value.length > 0
       this.$emit('remove-block', this.index)
   }
 }

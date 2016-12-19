@@ -66,7 +66,8 @@ export default {
 
       return t
 
-    removeBlock: (event) ->
+    removeBlock: (event, checkId = false) ->
+      return if checkId && event.target.value.length > 0
       this.$emit('remove-block', this.index)
   }
 }
