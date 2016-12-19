@@ -1,6 +1,7 @@
 <template>
   <div class="bb8-block">
     <input :value="block.fields.id" @keydown.prevent.enter="loadTweet($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control bb8-block-tweet-id" placeholder="Paste a tweet ID and press enter" v-show="block.fields.id == ''" required>
+    <div class="bb8-block-tweet-wrapper" v-if="block.fields.id != ''">
       <div class="bb8-block-tweet"></div>
       <a class="bb8-block-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
