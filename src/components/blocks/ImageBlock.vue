@@ -44,7 +44,7 @@ export default {
     vm = this
 
     # TODO: brrr…
-    this.$el.getElementsByTagName('input')[0].click() if this.block.fields.image.length <= 0
+    this.$el.querySelector('.bb8-block-image-fileinput').click() if this.block.fields.image.length <= 0
 
     # TODO: Is there a better solution to handle cancelling a file input dialog?
     window.addEventListener('focus', (event) ->
@@ -55,7 +55,7 @@ export default {
 
   methods: {
     onFileInputCancel: ->
-      this.removeBlock() if this.block.fields.image.length <= 0 && this.$el.getElementsByTagName('input')[0].files.length <= 0
+      this.removeBlock() if this.block.fields.image.length <= 0 && this.$el.querySelector('.bb8-block-image-fileinput').files.length <= 0
 
     updateImage: (event) ->
       this.uploadImage(event)

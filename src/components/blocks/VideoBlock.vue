@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a YouTube or Vimeo video link and press enter" v-show="block.fields.id == ''" required>
+    <input :value="block.fields.url" @keydown.prevent.enter="loadVideo($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control bb8-block-video-url" placeholder="Paste a YouTube or Vimeo video link and press enter" v-show="block.fields.id == ''" required>
     <div class="bb8-block-video-preview" v-if="block.fields.id != ''">
       <div class="bb8-block-video-wrapper">
         <iframe class="bb8-block-video-iframe" v-if="block.fields.plattform == 'youtube'" :src="'//www.youtube-nocookie.com/embed/' + block.fields.id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1'" frameborder="0" allowfullscreen></iframe>
@@ -31,11 +31,12 @@ export default {
   }
 
   mounted: ->
-    this.$el.firstChild.focus() if this.block.fields.url.length <= 0
+    this.$el.querySelector('.bb8-block-video-url').focus() if this.block.fields.url.length <= 0
 
   methods: {
     loadVideo: (event) ->
       url = event.target.value
+      return if url == ''
       this.block.fields.url = url
 
       id = this.getVideoId(url)

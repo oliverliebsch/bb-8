@@ -15,7 +15,7 @@
 import blockMixin from './../BlockMixin.vue'
 
 export default {
-  name: 'yourblockname'
+  name: 'gist'
 
   mixins: [blockMixin]
 
@@ -34,6 +34,7 @@ export default {
 
     loadGist: (event) ->
       url = event.target.value
+      return if url == ''
       this.block.fields.url = url
 
       gistFrame = document.createElement('iframe')
@@ -55,7 +56,8 @@ export default {
       gistFrameDoc.writeln(gistFrameHTML)
       gistFrameDoc.close()
 
-    removeBlock: (event) ->
+    removeBlock: (event, checkUrl = false) ->
+      return if checkUrl && event.target.value.length > 0
       this.$emit('remove-block', this.index)
   }
 }

@@ -81,9 +81,8 @@ export default {
 
 .bb8-controls-block-types
   display: block
-  float: left
   margin: 0
-  padding-left: 10px
+  padding: 0 0 0 34px
   list-style-type: none
   line-height: 1
 

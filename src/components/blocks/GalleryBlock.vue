@@ -71,12 +71,22 @@ export default {
 
 .bb8-block-gallery-item
   float: left
-  width: 25%
+  width: 100%
   padding: 0 1em 1em 0
-  &:nth-child(4n+1)
-    clear: left
   .bb8-block-image-wrapper
     margin: 0
+  @media only screen and (min-width: 460px) and (max-width: 639px)
+    width: 50%
+    &:nth-child(2n+1)
+      clear: left
+  @media only screen and (min-width: 640px) and (max-width: 859px)
+    width: 33%
+    &:nth-child(3n+1)
+      clear: left
+  @media only screen and (min-width: 860px)
+    width: 25%
+    &:nth-child(4n+1)
+      clear: left
 
 .bb8-block-gallery-add-image
   display: block

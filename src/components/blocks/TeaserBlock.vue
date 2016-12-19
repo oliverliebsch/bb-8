@@ -61,7 +61,7 @@ export default {
     removeImage: ->
       this.block.fields.image = ''
       # TODO: ugly
-      document.getElementById('bb8-file-' + this.index).value = ''
+      this.$el.querySelector('.bb8-block-teaser-image-fileinput').value = ''
 
     removeBlock: (event, checkUrl = false) ->
       return if checkUrl && event.target.value.length >= 0
@@ -81,8 +81,11 @@ export default {
     clear: both
 
 .bb8-block-teaser-left
-  float: left
-  width: 32%
+  margin-bottom: 1em
+  @media only screen and (min-width: 640px)
+    float: left
+    width: 32%
+    margin-bottom: 0
 
 .bb8-block-teaser-image-fileinput
   overflow: hidden
@@ -120,8 +123,9 @@ export default {
   margin: 0 0.25em 0.5em
 
 .bb8-block-teaser-right
-  float: right
-  width: 65%
+  @media only screen and (min-width: 640px)
+    float: right
+    width: 65%
 
 .bb8-block-teaser-text
   margin-bottom: 0.5em

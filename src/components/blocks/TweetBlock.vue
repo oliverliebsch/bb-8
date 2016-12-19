@@ -1,7 +1,7 @@
 <template>
   <div class="bb8-block">
-    <input :value="block.fields.id" @keydown.prevent.enter="loadTweet($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control" placeholder="Paste a tweet ID and press enter" v-show="block.fields.id == ''" required>
-    <div class="bb8-block-tweet-wrapper">
+    <input :value="block.fields.id" @keydown.prevent.enter="loadTweet($event)" @keydown.delete="removeBlock($event, true)" class="bb8-form-control bb8-block-tweet-id" placeholder="Paste a tweet ID and press enter" v-show="block.fields.id == ''" required>
+    <div class="bb8-block-tweet-wrapper" v-show="block.fields.id != ''">
       <div class="bb8-block-tweet"></div>
       <a class="bb8-block-remove" @click="removeBlock()">
         <svg class="icon icon-remove"><use xlink:href="#icon-remove"></use></svg>
@@ -26,12 +26,13 @@ export default {
   }
 
   mounted: ->
-    this.$el.firstChild.focus() if this.block.fields.id.length <= 0
+    this.$el.querySelector('.bb8-block-tweet-id').focus() if this.block.fields.id.length <= 0
 
   methods: {
     loadTweet: (event) ->
       vm = this
       id = event.target.value
+      return if id == ''
       this.block.fields.id = id
 
       window.twttr = this.loadTwitterWidgetJS(->
@@ -65,7 +66,8 @@ export default {
 
       return t
 
-    removeBlock: (event) ->
+    removeBlock: (event, checkId = false) ->
+      return if checkId && event.target.value.length > 0
       this.$emit('remove-block', this.index)
   }
 }
