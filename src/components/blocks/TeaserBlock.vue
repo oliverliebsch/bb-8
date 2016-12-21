@@ -50,6 +50,7 @@ export default {
       title: ''
       text: ''
       image: ''
+      image_id: ''
       link: ''
     }
   }
@@ -60,6 +61,7 @@ export default {
 
     removeImage: ->
       this.block.fields.image = ''
+      this.block.fields.image_id = ''
       # TODO: ugly
       this.$el.querySelector('.bb8-block-teaser-image-fileinput').value = ''
 

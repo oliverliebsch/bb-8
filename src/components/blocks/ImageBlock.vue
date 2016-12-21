@@ -36,6 +36,7 @@ export default {
     fields: {
       alt: ''
       image: ''
+      image_id: ''
       alignment: 'center'
     }
   }
