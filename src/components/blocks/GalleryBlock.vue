@@ -1,7 +1,7 @@
 <template>
   <div class="bb8-block">
     <ul class="bb8-block-gallery">
-      <li class="bb8-block-gallery-item" v-for="(block, index) in fields.blocks">
+      <li class="bb8-block-gallery-item" v-for="(block, index) in block.fields.blocks">
         <image-block :index="index" :block="block" :config="config" :disallow-allignment="true" v-on:remove-block="removeImage"></image-block>
       </li>
       <li class="bb8-block-gallery-item">
@@ -31,27 +31,25 @@ export default {
 
   data: -> {
     fields: {
-      blocks: []
+      blocks: [{
+        blocktype: 'image'
+        fields: {}
+      }]
     }
   }
 
-  created: ->
-    this.fields.blocks = [{
-      blocktype: 'image'
-      fields: {}
-    }]
-
   methods: {
     addImage: ->
-      this.fields.blocks.push({
+
+      this.block.fields.blocks.push({
         blocktype: 'image'
         fields: {}
       })
 
     removeImage: (index) ->
-      this.fields.blocks.splice(index, 1)
+      this.block.fields.blocks.splice(index, 1)
 
-      return if this.fields.blocks.length > 0
+      return if this.block.fields.blocks.length > 0
       this.$emit('remove-block', this.index)
   }
 }

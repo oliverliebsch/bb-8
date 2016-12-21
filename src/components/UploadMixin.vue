@@ -25,8 +25,10 @@ export default {
           if this.status == 200
             resp = JSON.parse(this.response)
             vm.block.fields.image = resp.file.url
+            vm.block.fields.image_id = resp.image_id
           else
             vm.block.fields.image = ''
+            vm.block.fields.image_id = ''
 
         xhr.send(fd)
 
