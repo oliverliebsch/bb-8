@@ -83,7 +83,7 @@ export default {
   u
     text-decoration: underline
   ul, ol
-    margin: 0 0 1.5em 1em
+    margin: 0 0 1.5em 2em
     &:last-child
       margin-bottom: 0
   li

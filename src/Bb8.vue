@@ -182,7 +182,6 @@ export default {
     clear: both
 
 .bb8-block-remove
-  display: table
   position: absolute
   top: -12px
   right: -12px
@@ -200,7 +199,6 @@ export default {
   &:focus
     transform: rotate(90deg)
   .icon
-    display: table-cell
     width: 100%
     height: 100%
 
