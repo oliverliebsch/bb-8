@@ -58,6 +58,7 @@ If you use the built-in image, teaser or gallery block:
 - heading
 - subheading
 - text (contenteditable attribute with [MediumEditor](https://github.com/yabwe/medium-editor)
+- quote
 - image with alt attribute
 - video (YouTube, Vimeo)
 - teaser (headline + text + image + link)

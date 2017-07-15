@@ -63,6 +63,10 @@
           <title>upload</title>
           <path class="path1" d="M5.016 18h13.969v2.016h-13.969v-2.016zM9 15.984v-6h-3.984l6.984-6.984 6.984 6.984h-3.984v6h-6z"></path>
         </symbol>
+        <symbol id="icon-quote-block" viewBox="0 0 24 24">
+          <title>quote-block</title>
+          <path d="M14.016 17.016l1.969-4.031h-3v-6h6v6l-1.969 4.031h-3zM6 17.016l2.016-4.031h-3v-6h6v6l-2.016 4.031h-3z"></path>
+        </symbol>
       </defs>
     </svg>
     <textarea class="bb8-output" :name="config.name" v-model="output"></textarea>
@@ -86,13 +90,14 @@ import TeaserBlock from './components/blocks/TeaserBlock.vue'
 import GalleryBlock from './components/blocks/GalleryBlock.vue'
 import GistBlock from './components/blocks/GistBlock.vue'
 import TweetBlock from './components/blocks/TweetBlock.vue'
+import QuoteBlock from './components/blocks/QuoteBlock.vue'
 
 export default {
   name: 'bb8'
 
   data: -> {
     config: {}
-    blockTypes: ['heading', 'subheading', 'text', 'image', 'video', 'teaser', 'gallery', 'gist', 'tweet']
+    blockTypes: ['heading', 'subheading', 'text', 'quote', 'image', 'video', 'teaser', 'gallery', 'gist', 'tweet']
     blocks: []
     ids: []
   }
@@ -104,6 +109,7 @@ export default {
     HeadingBlock
     SubheadingBlock
     TextBlock
+    QuoteBlock
     ImageBlock
     VideoBlock
     TeaserBlock
