@@ -1,6 +1,6 @@
 <template>
   <div class="bb8-block">
-    <input v-model="block.fields.quote" @keydown.delete="removeBlock($event)" class="bb8-form-control bb8-block-quote" placeholder="Quote" required>
+    <textarea v-model="block.fields.quote" class="bb8-form-control bb8-block-quote" rows="2" placeholder="Quote" required></textarea>
     <input v-model="block.fields.cite" class="bb8-form-control bb8-block-quote-cite" placeholder="Cite">
     <slot></slot>
   </div>
